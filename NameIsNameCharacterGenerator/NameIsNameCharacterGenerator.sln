@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameIsNameCharacterGenerator", "NameIsNameCharacterGenerator\NameIsNameCharacterGenerator.csproj", "{E7172A6E-3841-449E-8852-E8C3FD61B53F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameIsNameCharacterGenerator.Tests", "NameIsNameCharacterGenerator.Tests\NameIsNameCharacterGenerator.Tests.csproj", "{6B87F34F-7F34-4873-AC08-AD945B076F7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7172A6E-3841-449E-8852-E8C3FD61B53F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7172A6E-3841-449E-8852-E8C3FD61B53F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7172A6E-3841-449E-8852-E8C3FD61B53F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7172A6E-3841-449E-8852-E8C3FD61B53F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B87F34F-7F34-4873-AC08-AD945B076F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B87F34F-7F34-4873-AC08-AD945B076F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B87F34F-7F34-4873-AC08-AD945B076F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B87F34F-7F34-4873-AC08-AD945B076F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA516998-F650-4A44-A663-7771C512C255}
+	EndGlobalSection
+EndGlobal
