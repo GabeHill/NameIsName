@@ -10,13 +10,13 @@ namespace NameIsNameCharacterGenerator.Controllers {
             return View();
         }
 
-        public ActionResult About() {
+        public ActionResult NewCharacter() {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact() {
+        public ActionResult AllCharacters() {
             ViewBag.Message = "Your contact page.";
 
             return View();
