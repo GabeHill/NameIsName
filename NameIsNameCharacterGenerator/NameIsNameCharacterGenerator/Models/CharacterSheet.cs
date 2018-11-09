@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.IO;
 
-namespace NameIsNameCharacterGenerator.Models {
-    public enum Race {
-        Dwarf,Elf,Halfling,Human,Dragonborn,Gnome,HalfElf,HalfOrc,Tiefling
+namespace NameIsNameCharacterGenerator.Models
+{
+    public enum Race
+    {
+        Dwarf, Elf, Halfling, Human, Dragonborn, Gnome, HalfElf, HalfOrc, Tiefling
     }
 
-    public enum CharacterClass {
-        Barbarian,Bard,Cleric,Fighter,Monk,Paladin,Ranger,Rouge,Sorcerer,Warlock,Wizard
+    public enum CharacterClass
+    {
+        Barbarian, Bard, Cleric, Fighter, Monk, Paladin, Ranger, Rouge, Sorcerer, Warlock, Wizard
     }
 
-    public enum Background {
-        Acolyte,Charlatan,Criminal,Entertainer,FolkHero,GuildArtisan,Hermit,Noble,Outlander,Sage,Sailor,Soldier,Urchin
+    public enum Background
+    {
+        Acolyte, Charlatan, Criminal, Entertainer, FolkHero, GuildArtisan, Hermit, Noble, Outlander, Sage, Sailor, Soldier, Urchin
     }
 
 
-    public class CharacterSheet {
+    public class CharacterSheet
+    {
 
         public string name { get; set; }
 
@@ -34,7 +40,15 @@ namespace NameIsNameCharacterGenerator.Models {
         public int Wis { get; set; }
         public int Cha { get; set; }
 
-        public CharacterSheet(Race r, CharacterClass c, Background b) {
+        public string Bond { get; set; }
+        public string Flaw { get; set; }
+        public string Ideal { get; set; }
+        public string PersonalityTrait { get; set; }
+
+        public CharacterSheet(Race r, CharacterClass c, Background b)
+        {
+            SetBackground(b);
+
             race = r;
             characterClass = c;
             background = b;
@@ -45,6 +59,44 @@ namespace NameIsNameCharacterGenerator.Models {
             Int = SetAbilityScore();
             Wis = SetAbilityScore();
             Cha = SetAbilityScore();
+        }
+
+        private void SetBackground(Background b)
+        {
+            //You need to change to file paths based on your personal computers
+            Bond = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\Bond.csv", b), 6);
+            Flaw = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\Flaws.csv", b), 6);
+            Ideal = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\Ideals.csv", b), 6);
+            PersonalityTrait = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\PersonalityTrait.csv", b), 8);
+        }
+
+        private List<string> ReadFile(string filename, Background b)
+        {
+            List<string> list = new List<string>();
+            using (var reader = new StreamReader(filename))
+            {
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+
+                    if (line.StartsWith(b.ToString()))
+                    {
+                        list.Add(line);
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        private string SetBackgroundTrait(List<string> list, int upperLimit)
+        {
+            Random r = new Random();
+            string trait = "";
+
+            trait = list[r.Next(0, upperLimit)];
+
+            return trait;
         }
 
         private int SetAbilityScore()
