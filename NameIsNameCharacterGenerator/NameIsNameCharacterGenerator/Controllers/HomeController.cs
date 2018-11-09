@@ -18,14 +18,14 @@ namespace NameIsNameCharacterGenerator.Controllers
 
         public ActionResult NewCharacter()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "New Random Character";
 
             return View();
         }
 
         public ActionResult AllCharacters()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "All of the characters made by the program!";
 
             return View();
         }
