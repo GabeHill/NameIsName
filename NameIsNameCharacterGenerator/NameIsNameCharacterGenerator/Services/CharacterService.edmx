@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CharacterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Characters.dbo.Bonds' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Bonds">
+          <Property Name="CharcterID" Type="int" />
+          <Property Name="Bond" Type="varchar" MaxLength="45" />
+        </EntityType>-->
+        <EntityType Name="Characters">
+          <Key>
+            <PropertyRef Name="CharcterID" />
+          </Key>
+          <Property Name="CharcterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+          <Property Name="Class" Type="varchar" MaxLength="45" />
+          <Property Name="Race" Type="varchar" MaxLength="45" />
+          <Property Name="Alignment" Type="varchar" MaxLength="45" />
+          <Property Name="Str" Type="int" />
+          <Property Name="Dex" Type="int" />
+          <Property Name="Con" Type="int" />
+          <Property Name="Int" Type="int" />
+          <Property Name="Wis" Type="int" />
+          <Property Name="Cha" Type="int" />
+          <Property Name="Prof" Type="int" />
+          <Property Name="Acrobatics" Type="int" />
+          <Property Name="AniamlHandling" Type="int" />
+          <Property Name="Arcana" Type="int" />
+          <Property Name="Athletics" Type="int" />
+          <Property Name="Deception" Type="int" />
+          <Property Name="History" Type="int" />
+          <Property Name="Insight" Type="int" />
+          <Property Name="Intimidation" Type="int" />
+          <Property Name="Investigation" Type="int" />
+          <Property Name="Medicine" Type="int" />
+          <Property Name="Nature" Type="int" />
+          <Property Name="Perception" Type="int" />
+          <Property Name="Performance" Type="int" />
+          <Property Name="Persuasion" Type="int" />
+          <Property Name="Religion" Type="int" />
+          <Property Name="SlightOfHand" Type="int" />
+          <Property Name="Stealth" Type="int" />
+          <Property Name="Survival" Type="int" />
+          <Property Name="AC" Type="int" />
+          <Property Name="Speed" Type="int" />
+          <Property Name="HP" Type="int" />
+          <Property Name="HitDice" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Characters.dbo.Equipment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="CharcterID" />
+          </Key>
+          <Property Name="CharcterID" Type="int" Nullable="false" />
+          <Property Name="Equipment" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Characters.dbo.Features_Traits' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Features_Traits">
+          <Key>
+            <PropertyRef Name="CharcterID" />
+          </Key>
+          <Property Name="CharcterID" Type="int" Nullable="false" />
+          <Property Name="Features_Trait" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Characters.dbo.Flaws' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Flaws">
+          <Property Name="CharacterID" Type="int" />
+          <Property Name="Flaws" Type="varchar" MaxLength="45" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Characters.dbo.Ideals' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Ideals">
+          <Key>
+            <PropertyRef Name="CharacterID" />
+          </Key>
+          <Property Name="CharacterID" Type="int" Nullable="false" />
+          <Property Name="Ideals" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Characters.dbo.PersonalityTraits' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PersonalityTraits">
+          <Property Name="PersonalityTraits" Type="varchar" MaxLength="45" />
+          <Property Name="CharacterID" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Prof_Lang">
+          <Key>
+            <PropertyRef Name="CharcterID" />
+          </Key>
+          <Property Name="CharcterID" Type="int" Nullable="false" />
+          <Property Name="Prof_Lang" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+error 6004: The table 'Characters.dbo.Bonds' is referenced by a relationship, but cannot be found.
+        <Association Name="BondCharcterID" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'Characters.dbo.PersonalityTraits' is referenced by a relationship, but cannot be found.
+        <Association Name="CharacterID" />-->
+        <Association Name="CharcterID">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+          <End Role="Ideals" Type="Self.Ideals" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Ideals">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EquipCharcterID">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="CharcterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'Characters.dbo.Flaws' is referenced by a relationship, but cannot be found.
+        <Association Name="FlawCharcterID" />-->
+        <Association Name="FTCharcterID">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+          <End Role="Features_Traits" Type="Self.Features_Traits" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Features_Traits">
+              <PropertyRef Name="CharcterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PLCharcterID">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+          <End Role="Prof_Lang" Type="Self.Prof_Lang" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Prof_Lang">
+              <PropertyRef Name="CharcterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CharacterModelStoreContainer">
+          <EntitySet Name="Characters" EntityType="Self.Characters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Equipment].[CharcterID] AS [CharcterID], 
+    [Equipment].[Equipment] AS [Equipment]
+    FROM [dbo].[Equipment] AS [Equipment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Features_Traits" EntityType="Self.Features_Traits" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Features_Traits].[CharcterID] AS [CharcterID], 
+    [Features_Traits].[Features_Trait] AS [Features_Trait]
+    FROM [dbo].[Features_Traits] AS [Features_Traits]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Ideals" EntityType="Self.Ideals" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Ideals].[CharacterID] AS [CharacterID], 
+    [Ideals].[Ideals] AS [Ideals]
+    FROM [dbo].[Ideals] AS [Ideals]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Prof_Lang" EntityType="Self.Prof_Lang" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Prof_Lang].[CharcterID] AS [CharcterID], 
+    [Prof_Lang].[Prof_Lang] AS [Prof_Lang]
+    FROM [dbo].[Prof_Lang] AS [Prof_Lang]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="CharcterID" Association="Self.CharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Ideals" EntitySet="Ideals" />
+          </AssociationSet>
+          <AssociationSet Name="EquipCharcterID" Association="Self.EquipCharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FTCharcterID" Association="Self.FTCharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Features_Traits" EntitySet="Features_Traits" />
+          </AssociationSet>
+          <AssociationSet Name="PLCharcterID" Association="Self.PLCharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Prof_Lang" EntitySet="Prof_Lang" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CharacterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Character">
+          <Key>
+            <PropertyRef Name="CharcterID" />
+          </Key>
+          <Property Name="CharcterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Class" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Race" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Alignment" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Str" Type="Int32" />
+          <Property Name="Dex" Type="Int32" />
+          <Property Name="Con" Type="Int32" />
+          <Property Name="Int" Type="Int32" />
+          <Property Name="Wis" Type="Int32" />
+          <Property Name="Cha" Type="Int32" />
+          <Property Name="Prof" Type="Int32" />
+          <Property Name="Acrobatics" Type="Int32" />
+          <Property Name="AniamlHandling" Type="Int32" />
+          <Property Name="Arcana" Type="Int32" />
+          <Property Name="Athletics" Type="Int32" />
+          <Property Name="Deception" Type="Int32" />
+          <Property Name="History" Type="Int32" />
+          <Property Name="Insight" Type="Int32" />
+          <Property Name="Intimidation" Type="Int32" />
+          <Property Name="Investigation" Type="Int32" />
+          <Property Name="Medicine" Type="Int32" />
+          <Property Name="Nature" Type="Int32" />
+          <Property Name="Perception" Type="Int32" />
+          <Property Name="Performance" Type="Int32" />
+          <Property Name="Persuasion" Type="Int32" />
+          <Property Name="Religion" Type="Int32" />
+          <Property Name="SlightOfHand" Type="Int32" />
+          <Property Name="Stealth" Type="Int32" />
+          <Property Name="Survival" Type="Int32" />
+          <Property Name="AC" Type="Int32" />
+          <Property Name="Speed" Type="Int32" />
+          <Property Name="HP" Type="Int32" />
+          <Property Name="HitDice" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ideal" Relationship="Self.CharcterID" FromRole="Characters" ToRole="Ideals" />
+          <NavigationProperty Name="Equipment" Relationship="Self.EquipCharcterID" FromRole="Characters" ToRole="Equipment" />
+          <NavigationProperty Name="Features_Traits" Relationship="Self.FTCharcterID" FromRole="Characters" ToRole="Features_Traits" />
+          <NavigationProperty Name="Prof_Lang" Relationship="Self.PLCharcterID" FromRole="Characters" ToRole="Prof_Lang" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="CharcterID" />
+          </Key>
+          <Property Name="CharcterID" Type="Int32" Nullable="false" />
+          <Property Name="Equipment1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Character" Relationship="Self.EquipCharcterID" FromRole="Equipment" ToRole="Characters" />
+        </EntityType>
+        <EntityType Name="Features_Traits">
+          <Key>
+            <PropertyRef Name="CharcterID" />
+          </Key>
+          <Property Name="CharcterID" Type="Int32" Nullable="false" />
+          <Property Name="Features_Trait" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Character" Relationship="Self.FTCharcterID" FromRole="Features_Traits" ToRole="Characters" />
+        </EntityType>
+        <EntityType Name="Ideal">
+          <Key>
+            <PropertyRef Name="CharacterID" />
+          </Key>
+          <Property Name="CharacterID" Type="Int32" Nullable="false" />
+          <Property Name="Ideals" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Character" Relationship="Self.CharcterID" FromRole="Ideals" ToRole="Characters" />
+        </EntityType>
+        <EntityType Name="Prof_Lang">
+          <Key>
+            <PropertyRef Name="CharcterID" />
+          </Key>
+          <Property Name="CharcterID" Type="Int32" Nullable="false" />
+          <Property Name="Prof_Lang1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Character" Relationship="Self.PLCharcterID" FromRole="Prof_Lang" ToRole="Characters" />
+        </EntityType>
+        <Association Name="CharcterID">
+          <End Role="Characters" Type="Self.Character" Multiplicity="1" />
+          <End Role="Ideals" Type="Self.Ideal" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Ideals">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EquipCharcterID">
+          <End Role="Characters" Type="Self.Character" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="CharcterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FTCharcterID">
+          <End Role="Characters" Type="Self.Character" Multiplicity="1" />
+          <End Role="Features_Traits" Type="Self.Features_Traits" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Features_Traits">
+              <PropertyRef Name="CharcterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PLCharcterID">
+          <End Role="Characters" Type="Self.Character" Multiplicity="1" />
+          <End Role="Prof_Lang" Type="Self.Prof_Lang" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Prof_Lang">
+              <PropertyRef Name="CharcterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CharacterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Characters" EntityType="Self.Character" />
+          <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+          <EntitySet Name="Features_Traits" EntityType="Self.Features_Traits" />
+          <EntitySet Name="Ideals" EntityType="Self.Ideal" />
+          <EntitySet Name="Prof_Lang" EntityType="Self.Prof_Lang" />
+          <AssociationSet Name="CharcterID" Association="Self.CharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Ideals" EntitySet="Ideals" />
+          </AssociationSet>
+          <AssociationSet Name="EquipCharcterID" Association="Self.EquipCharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Equipment" EntitySet="Equipments" />
+          </AssociationSet>
+          <AssociationSet Name="FTCharcterID" Association="Self.FTCharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Features_Traits" EntitySet="Features_Traits" />
+          </AssociationSet>
+          <AssociationSet Name="PLCharcterID" Association="Self.PLCharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Prof_Lang" EntitySet="Prof_Lang" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CharacterModelStoreContainer" CdmEntityContainer="CharacterEntities">
+          <EntitySetMapping Name="Characters">
+            <EntityTypeMapping TypeName="CharacterModel.Character">
+              <MappingFragment StoreEntitySet="Characters">
+                <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Race" ColumnName="Race" />
+                <ScalarProperty Name="Alignment" ColumnName="Alignment" />
+                <ScalarProperty Name="Str" ColumnName="Str" />
+                <ScalarProperty Name="Dex" ColumnName="Dex" />
+                <ScalarProperty Name="Con" ColumnName="Con" />
+                <ScalarProperty Name="Int" ColumnName="Int" />
+                <ScalarProperty Name="Wis" ColumnName="Wis" />
+                <ScalarProperty Name="Cha" ColumnName="Cha" />
+                <ScalarProperty Name="Prof" ColumnName="Prof" />
+                <ScalarProperty Name="Acrobatics" ColumnName="Acrobatics" />
+                <ScalarProperty Name="AniamlHandling" ColumnName="AniamlHandling" />
+                <ScalarProperty Name="Arcana" ColumnName="Arcana" />
+                <ScalarProperty Name="Athletics" ColumnName="Athletics" />
+                <ScalarProperty Name="Deception" ColumnName="Deception" />
+                <ScalarProperty Name="History" ColumnName="History" />
+                <ScalarProperty Name="Insight" ColumnName="Insight" />
+                <ScalarProperty Name="Intimidation" ColumnName="Intimidation" />
+                <ScalarProperty Name="Investigation" ColumnName="Investigation" />
+                <ScalarProperty Name="Medicine" ColumnName="Medicine" />
+                <ScalarProperty Name="Nature" ColumnName="Nature" />
+                <ScalarProperty Name="Perception" ColumnName="Perception" />
+                <ScalarProperty Name="Performance" ColumnName="Performance" />
+                <ScalarProperty Name="Persuasion" ColumnName="Persuasion" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="SlightOfHand" ColumnName="SlightOfHand" />
+                <ScalarProperty Name="Stealth" ColumnName="Stealth" />
+                <ScalarProperty Name="Survival" ColumnName="Survival" />
+                <ScalarProperty Name="AC" ColumnName="AC" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="HP" ColumnName="HP" />
+                <ScalarProperty Name="HitDice" ColumnName="HitDice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipments">
+            <EntityTypeMapping TypeName="CharacterModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
+                <ScalarProperty Name="Equipment1" ColumnName="Equipment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features_Traits">
+            <EntityTypeMapping TypeName="CharacterModel.Features_Traits">
+              <MappingFragment StoreEntitySet="Features_Traits">
+                <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
+                <ScalarProperty Name="Features_Trait" ColumnName="Features_Trait" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ideals">
+            <EntityTypeMapping TypeName="CharacterModel.Ideal">
+              <MappingFragment StoreEntitySet="Ideals">
+                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
+                <ScalarProperty Name="Ideals" ColumnName="Ideals" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prof_Lang">
+            <EntityTypeMapping TypeName="CharacterModel.Prof_Lang">
+              <MappingFragment StoreEntitySet="Prof_Lang">
+                <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
+                <ScalarProperty Name="Prof_Lang1" ColumnName="Prof_Lang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
