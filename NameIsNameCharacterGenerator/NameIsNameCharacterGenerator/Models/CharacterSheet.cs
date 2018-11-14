@@ -24,11 +24,11 @@ namespace NameIsNameCharacterGenerator.Models
 
     public class CharacterSheet
     {
-		private Race dragonborn;
-		private CharacterClass barbarian;
-		private Background acolyte;
+        private Race dragonborn;
+        private CharacterClass barbarian;
+        private Background acolyte;
 
-		public string name { get; set; }
+        public string name { get; set; }
 
         public Race race { get; set; }
 
@@ -62,7 +62,7 @@ namespace NameIsNameCharacterGenerator.Models
             Random random3 = new Random();
             Background b = (Background)values3.GetValue(random3.Next(values3.Length));
 
-            SetBackground(b);
+            SetBFIP(b);
 
             race = r;
             characterClass = c;
@@ -74,16 +74,60 @@ namespace NameIsNameCharacterGenerator.Models
             Int = SetAbilityScore();
             Wis = SetAbilityScore();
             Cha = SetAbilityScore();
+
+            switch (r)
+            {
+                case Race.Dwarf:
+                    Str += 2;
+                    Wis += 1;
+                    break;
+                case Race.Elf:
+                    Dex += 2;
+                    Int += 1;
+                    break;
+                case Race.Halfling:
+                    Cha += 1;
+                    Dex += 2;
+                    break;
+                case Race.Human:
+                    Str += 1;
+                    Dex += 1;
+                    Con += 1;
+                    Int += 1;
+                    Wis += 1;
+                    Cha += 1;
+                    break;
+                case Race.Dragonborn:
+                    Str += 2;
+                    Cha += 1;
+                    break;
+                case Race.Gnome:
+                    Int += 2;
+                    break;
+                case Race.HalfElf:
+                    Cha += 2;
+                    break;
+                case Race.HalfOrc:
+                    Str += 2;
+                    Con += 1;
+                    break;
+                case Race.Tiefling:
+                    Int += 1;
+                    Cha += 2;
+                    break;
+                default:
+                    break;
+            }
         }
 
-		public CharacterSheet(Race dragonborn, CharacterClass barbarian, Background acolyte)
-		{
-			this.dragonborn = dragonborn;
-			this.barbarian = barbarian;
-			this.acolyte = acolyte;
-		}
+        public CharacterSheet(Race dragonborn, CharacterClass barbarian, Background acolyte)
+        {
+            this.dragonborn = dragonborn;
+            this.barbarian = barbarian;
+            this.acolyte = acolyte;
+        }
 
-		private void SetBackground(Background b)
+        private void SetBFIP(Background b)
         {
             //You need to change to file paths based on your personal computers
             Bond = SetBackgroundTrait(ReadFile(@"\CSVs\Bond.csv", b), 6);
