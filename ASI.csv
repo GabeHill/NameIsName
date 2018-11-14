@@ -1,0 +1,9 @@
+Dwarf, 0, 0, 2, 0, 0, 0, subrace
+Elf, 0, 2, 0, 0, 0, 0, subrace
+Halfling, 0, 2, 0, 0, 0, 0, subrace
+Human, 1, 1, 1, 1, 1, 1
+Dragonborn, 2, 0, 0, 0, 0, 1
+Gnome, 0, 0, 0, 2, 0, 0, subrace
+Half-Elf, 0, 0, 0, 0, 0, 2, special
+Half-Orc, 2, 0, 1, 0, 0, 0
+Tiefling, 0, 0, 0, 1, 0, 2
