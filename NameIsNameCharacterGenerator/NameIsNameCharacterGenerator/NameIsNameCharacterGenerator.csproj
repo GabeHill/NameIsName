@@ -179,12 +179,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CharacterService.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Services\EFCharacterService.cs" />
     <Compile Include="Services\Equipment.cs">
       <DependentUpon>CharacterService.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\Features_Traits.cs">
       <DependentUpon>CharacterService.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\ICharacterService.cs" />
     <Compile Include="Services\Ideal.cs">
       <DependentUpon>CharacterService.tt</DependentUpon>
     </Compile>
