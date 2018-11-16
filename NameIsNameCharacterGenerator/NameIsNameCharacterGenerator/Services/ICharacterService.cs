@@ -10,10 +10,13 @@ namespace NameIsNameCharacterGenerator.Services
     interface ICharacterService
     {
         //Create
+        void AddNewCharacter(CharacterSheet model);
         //Get
-        List<CharacterSheet> GetAllCharacters();
-        CharacterSheet GetCharacterById(int id);
+        List<Character> GetAllCharacters();
+        Character GetCharacterById(int id);
         //Update
+
         //Delete
+        void DeleteCharacterById(int id);
     }
 }

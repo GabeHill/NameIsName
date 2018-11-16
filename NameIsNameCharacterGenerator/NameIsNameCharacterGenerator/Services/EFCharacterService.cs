@@ -8,47 +8,45 @@ namespace NameIsNameCharacterGenerator.Services
 {
     public class EFCharacterService : ICharacterService
     {
-        public List<CharacterSheet> GetAllCharacters()
+        public void AddNewCharacter(CharacterSheet model)
         {
-            List<CharacterSheet> list = new List<CharacterSheet>();
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCharacterById(int id)
+        {
+            using (var context = new CharacterEntities())
+            {
+                //Depending on foreign keys this may require reworking
+                var query = context.Characters.SingleOrDefault(i => i.CharcterID == id);
+
+                context.Characters.Remove(query);
+                context.SaveChanges();
+            }
+        }
+
+        public List<Character> GetAllCharacters()
+        {
+            List<Character> list = new List<Character>();
             using (var context = new CharacterEntities())
             {
                 var query = context.Characters.Select(c => c);
-                List<Character> results = query.ToList();
-
-                results.ForEach(c =>
-                {
-                    list.Add(EFConverter(c));
-                });
+                list = query.ToList();
             }
 
             return list;
         }
 
-        public CharacterSheet GetCharacterById(int id)
+        public Character GetCharacterById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        private CharacterSheet EFConverter(Character c)
-        {
-            CharacterSheet sheet = new CharacterSheet()
+            Character result;
+            using (var context = new CharacterEntities())
             {
-                name = c.Name,
-                //Figure out how to convert enums between database and models
-                //race = c.Race,
-                //characterClass = c.Class,
-                //background = c.
-                Str = (int)c.Str,
-                Dex = (int)c.Dex,
-                Con = (int)c.Con,
-                Int = (int)c.Int,
-                Wis = (int)c.Wis,
-                Cha = (int)c.Cha,
-                //Bond = c.
-            };
-
-            return sheet;
+                var query = context.Characters.Single(i => i.CharcterID == id);
+                result = query;
+            }
+            return result;
         }
+
     }
 }
