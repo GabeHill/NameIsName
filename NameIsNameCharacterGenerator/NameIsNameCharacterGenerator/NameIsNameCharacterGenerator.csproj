@@ -159,6 +159,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CharacterList.cs" />
     <Compile Include="Models\CharacterSheet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Character.cs">
@@ -245,7 +246,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\NewCharacter.cshtml" />
-    <Content Include="Views\Home\AllCharacters.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <EntityDeploy Include="Services\CharacterService.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -254,6 +254,7 @@
     <Content Include="Services\CharacterService.edmx.diagram">
       <DependentUpon>CharacterService.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Home\AllCharacters.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -30,9 +30,10 @@ namespace NameIsNameCharacterGenerator.Controllers
             return View();
         }
 
-        //public ActionResult CreateNewCharacter()
-        //{
-        //    // TODO: adding a random characer to the database
-        //}
-    }
+
+		//public ActionResult CreateNewCharacter()
+		//{
+		//    // TODO: adding a random characer to the database
+		//}
+	}
 }

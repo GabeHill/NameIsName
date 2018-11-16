@@ -1,6 +1,12 @@
-﻿@{
-    ViewBag.Title = "All Characters";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@model NameIsNameCharacterGenerator.Models.CharacterList
 
+@{
+    ViewBag.Title = "AllCharacters";
+}
+
+<h2>AllCharacters</h2>
+
+@foreach (var item in Model.AllCharacters)
+{
+    <p>@item.Name</p>
+}
