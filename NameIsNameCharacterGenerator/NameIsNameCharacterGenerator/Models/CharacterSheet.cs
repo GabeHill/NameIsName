@@ -48,6 +48,10 @@ namespace NameIsNameCharacterGenerator.Models
         public string Ideal { get; set; }
         public string PersonalityTrait { get; set; }
 
+        public int HP { get; set; }
+        public int AC { get; set; }
+
+
         public CharacterSheet()
         {
             Array values = Enum.GetValues(typeof(Race));
@@ -117,6 +121,120 @@ namespace NameIsNameCharacterGenerator.Models
                     break;
                 default:
                     break;
+            }
+            int StrMod = DetermineMod(Str);
+            int DexMod = DetermineMod(Dex);
+            int ConMod = DetermineMod(Con);
+            int IntMod = DetermineMod(Int);
+            int WisMod = DetermineMod(Wis);
+            int ChaMod = DetermineMod(Cha);
+
+            Acrobatics = DexMod;
+            AnimalHandling = WisMod;
+            Arcana = IntMod;
+            Athletics = StrMod;
+            Deception = ChaMod;
+            History = IntMod;
+            Insight = WisMod;
+            Intimidation = ChaMod;
+            Investigation = IntMod;
+            Medicine = WisMod;
+            Nature = IntMod;
+            Perception = ChaMod;
+            Performance = ChaMod;
+            Persuasion = ChaMod;
+            Religion = IntMod;
+            SlightOfHand = DexMod;
+            Stealth = DexMod;
+            Survival = WisMod;
+
+           HP = DetermineHp(ConMod);
+           AC = 10 + DexMod; 
+        }
+
+        
+
+        private int DetermineHp(int ConMod) {
+            int hp = 0;
+            switch (characterClass)
+            {
+                case CharacterClass.Barbarian:
+                    hp = 12 + ConMod;
+                    break;
+                case CharacterClass.Bard:
+                    hp = 8 + ConMod;
+                    break;
+                case CharacterClass.Cleric:
+                    hp = 8 + ConMod;
+                    break;
+                case CharacterClass.Fighter:
+                    hp = 10 + ConMod;
+                    break;
+                case CharacterClass.Monk:
+                    hp = 8 + ConMod;
+                    break;
+                case CharacterClass.Paladin:
+                    hp = 10 + ConMod;
+                    break;
+                case CharacterClass.Ranger:
+                    hp = 10 + ConMod;
+                    break;
+                case CharacterClass.Rouge:
+                    hp = 8 + ConMod;
+                    break;
+                case CharacterClass.Sorcerer:
+                    hp = 6 + ConMod;
+                    break;
+                case CharacterClass.Warlock:
+                    hp = 8 + ConMod;
+                    break;
+                case CharacterClass.Wizard:
+                    hp = 6 + ConMod;
+                    break;
+                default:
+                    break;
+            }
+            return hp;
+        }
+
+
+        private int DetermineMod(int stat)
+        {
+            if (stat < 4)
+            {
+                return -4;
+            }
+            else if (stat >= 4 && stat < 6)
+            {
+                return -3;
+            }
+            else if (stat >= 6 && stat < 8)
+            {
+                return -2;
+            }
+            else if (stat >= 8 && stat < 10)
+            {
+                return -1;
+            }
+            else if (stat >= 10 && stat < 12)
+            {
+                return 0;
+            }
+            else if (stat >= 12 && stat < 14)
+            {
+                return 1;
+            }
+            else if (stat >= 14 && stat < 16)
+            {
+                return 2;
+            }
+            else if (stat >= 16 && stat < 18)
+            {
+                return 3;
+            }
+            else
+            {
+                return 4;
             }
         }
 
