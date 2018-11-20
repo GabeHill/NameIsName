@@ -10,6 +10,7 @@ namespace NameIsNameCharacterGenerator.Controllers
 {
     public class HomeController : Controller
     {
+        ICharacterService service = new EFCharacterService();
         public ActionResult Index()
         {
             CharacterSheet sheet = new CharacterSheet(Race.Dragonborn, CharacterClass.Barbarian, Background.Acolyte);
@@ -28,9 +29,19 @@ namespace NameIsNameCharacterGenerator.Controllers
 
         public ActionResult AllCharacters()
         {
-            ViewBag.Message = "All of the characters made by the program!";
+            //ViewBag.Message = "All of the characters made by the program!";
+            CharacterList model = new CharacterList()
+            {
+                Characters = service.GetAllCharacters()
+            };
 
-            return View();
+            return View(model);
+        }
+
+        public ActionResult Character(int id)
+        {
+            Character model = service.GetCharacterById(id);
+            return View(model);
         }
 
         //public ActionResult CreateNewCharacter()

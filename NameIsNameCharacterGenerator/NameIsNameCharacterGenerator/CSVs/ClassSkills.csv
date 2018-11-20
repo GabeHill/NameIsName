@@ -1,0 +1,12 @@
+Barbarian, 2, Animal Handling | Athletics | Intimidation | Nature | Perception | Survival
+Bard, 3, any
+Cleric, 2, History | Insight | Medicine | Persuasion | Religion
+Druid, 2, Arcana | Animal Handling | Insight | Medicine | Nature | Perception | Religion | Survival
+Fighter, 2, Acrobatics | Animal Handling | Athletics | History | Insight | Intimidation | Perception | Survival
+Monk , 2, Acrobatics | Athletics | History | Insight | Religion | Stealth
+Paladin, 2, Athletics | Insight | Intimidation | Medicine | Persuasion | Religion
+Ranger, 3, Animal Handling | Athletics | Insight | Investigation | Nature | Perception | Stealth | Survival
+Rouge, 4, Acrobatics | Athletics | Deception | Insight | Intimidation | Investigation | Perception | Performance | Persuasion | Sleight of Hand | Stealth
+Sorcerer, 2, Arcana | Deception | Insight | Intimidation | Persuasion | Religion
+Warlock, 2, Arcana | Deception | History | Intimidation | Investigation | Nature | Religion
+Wizard, 2, Arcana | History | Insight | Investigation | Medicine | Religion

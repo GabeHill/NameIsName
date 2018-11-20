@@ -1,0 +1,46 @@
+﻿@model NameIsNameCharacterGenerator.Services.Character
+
+@{
+    ViewBag.Title = "Character";
+}
+
+<h2>Character</h2>
+
+<div class="characterHead">
+    <h5>@Model.Name</h5>
+    <h5>@Model.Race</h5>
+    <h5>@Model.Class</h5>
+    <h5>@Model.Alignment</h5>
+    <h5>Background</h5>
+</div>
+<div class="characterBody">
+    <div class="abilityScores">
+        <span>@Model.Str</span>
+        <span>@Model.Dex</span>
+        <span>@Model.Con</span>
+        <span>@Model.Int</span>
+        <span>@Model.Wis</span>
+        <span>@Model.Cha</span>
+    </div>
+    <div class="skills">
+        <span>@Model.Acrobatics</span>
+        <span>@Model.AniamlHandling</span>
+        <span>@Model.Athletics</span>
+        <span>@Model.Deception</span>
+        <span>@Model.History</span>
+        <span>@Model.Insight</span>
+        <span>@Model.Intimidation</span>
+        <span>@Model.Investigation</span>
+        <span>@Model.Medicine</span>
+        <span>@Model.Nature</span>
+        <span>@Model.Perception</span>
+        <span>@Model.Performance</span>
+        <span>@Model.Religion</span>
+        <span>@Model.SlightOfHand</span>
+        <span>@Model.Stealth</span>
+        <span>@Model.Survival</span>
+    </div>
+</div>
+<div class="characterFoot">
+
+</div>
