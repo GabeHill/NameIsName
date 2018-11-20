@@ -219,7 +219,7 @@
     <Content Include="CSVs\BackgroundFeature.csv" />
     <Content Include="CSVs\ClassEquipment.csv" />
     <Content Include="CSVs\ClassFeatures.csv" />
-    <Content Include="CSVs\ClassProficiecies" />
+    <None Include="CSVs\ClassProficiecies.csv" />
     <Content Include="CSVs\ClassSkills.csv" />
     <Content Include="CSVs\ClericDomainBonuses.csv" />
     <Content Include="CSVs\Languages.csv" />
