@@ -153,8 +153,15 @@ namespace NameIsNameCharacterGenerator.Models
         Survival = WisMod;
 
         HP = DetermineHp(ConMod);
-        AC = 10 + DexMod;
 
+            AC = 10 + DexMod;
+
+            if (characterClass == CharacterClass.Barbarian) {
+                AC += ConMod;
+            }   
+            if (characterClass == CharacterClass.Monk) {
+                AC += WisMod;
+            }
         HitDice = $"1D{HP}";
     }
 
