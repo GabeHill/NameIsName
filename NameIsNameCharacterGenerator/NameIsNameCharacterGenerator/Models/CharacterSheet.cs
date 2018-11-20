@@ -22,12 +22,16 @@ namespace NameIsNameCharacterGenerator.Models
     }
 
 
+
+
     public class CharacterSheet
 {
 
         static Random rand = new Random();
 
         public List<string> firstNames => new List<string> { "Eva", "Falyne", "Genaesis", "Genaesys", "Gianna", "Jianna", "Janna", "Graece", "Grassa", "Haenna", "Hanna", "Gael", "Gayl", "Gayel", "Gaeus", "Gavyn", "Gaevyn", "Goshwa", "Joshoe", "Graysus", "Graysen", "Gwann", "Ewan", "Gwyllam", "Gwyllem", "Haddeus", "Hudsyn", "Haesoe", "Haesys" };
+
+        public List<string> languages = new List<string> { "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Deep Speech", "Draconic", "Infernal", "Primordial", "Sylvan", "Undercommon"};
 
     private Race dragonborn;
     private CharacterClass barbarian;
@@ -87,20 +91,26 @@ namespace NameIsNameCharacterGenerator.Models
         Int = SetAbilityScore();
         Wis = SetAbilityScore();
         Cha = SetAbilityScore();
-
+            Prof_Lang.Add("Common");
         switch (r)
         {
             case Race.Dwarf:
                 Str += 2;
                 Wis += 1;
+                    List<string> tools = new List<string>{ "Brewer's supplies", "Mason's tools","Smith's tools" };
+                    Prof_Lang.Add(tools[rand.Next(0,4)]);
+                    Prof_Lang.Add("Dwarvish");
                 break;
             case Race.Elf:
                 Dex += 2;
                 Int += 1;
+                    Perception += 2;
+                    Prof_Lang.Add("Elvish");
                 break;
             case Race.Halfling:
                 Cha += 1;
                 Dex += 2;
+                    Prof_Lang.Add("Halfling");
                 break;
             case Race.Human:
                 Str += 1;
@@ -109,24 +119,36 @@ namespace NameIsNameCharacterGenerator.Models
                 Int += 1;
                 Wis += 1;
                 Cha += 1;
+                    Prof_Lang.Add(languages[rand.Next(0, languages.Count)]);
                 break;
             case Race.Dragonborn:
                 Str += 2;
                 Cha += 1;
+                    Prof_Lang.Add("Draconic");
                 break;
             case Race.Gnome:
                 Int += 2;
+                    Prof_Lang.Add("Gnomish");
                 break;
             case Race.HalfElf:
                 Cha += 2;
+                    Prof_Lang.Add("Elvish");
+                    string l;
+                    do {
+                        l = languages[rand.Next(0, languages.Count)];
+                    } while (l.Equals("Elvish"));
+                    Prof_Lang.Add(l);
                 break;
             case Race.HalfOrc:
                 Str += 2;
                 Con += 1;
+                    Intimidation += 2;
+                    Prof_Lang.Add("Orc");
                 break;
             case Race.Tiefling:
                 Int += 1;
                 Cha += 2;
+                    Prof_Lang.Add("Infernal");
                 break;
             default:
                 break;
