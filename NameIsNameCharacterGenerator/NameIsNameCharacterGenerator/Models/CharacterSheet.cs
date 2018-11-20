@@ -24,6 +24,11 @@ namespace NameIsNameCharacterGenerator.Models
 
     public class CharacterSheet
 {
+
+        static Random rand = new Random();
+
+        public List<string> firstNames => new List<string> { "Eva", "Falyne", "Genaesis", "Genaesys", "Gianna", "Jianna", "Janna", "Graece", "Grassa", "Haenna", "Hanna", "Gael", "Gayl", "Gayel", "Gaeus", "Gavyn", "Gaevyn", "Goshwa", "Joshoe", "Graysus", "Graysen", "Gwann", "Ewan", "Gwyllam", "Gwyllem", "Haddeus", "Hudsyn", "Haesoe", "Haesys" };
+
     private Race dragonborn;
     private CharacterClass barbarian;
     private Background acolyte;
@@ -163,7 +168,9 @@ namespace NameIsNameCharacterGenerator.Models
                 AC += WisMod;
             }
         HitDice = $"1D{HP}";
-    }
+
+            name = firstNames[rand.Next(0, firstNames.Count)];
+        }
 
 
 
