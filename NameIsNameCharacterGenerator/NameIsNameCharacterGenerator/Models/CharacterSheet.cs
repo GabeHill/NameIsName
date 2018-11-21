@@ -52,6 +52,8 @@ namespace NameIsNameCharacterGenerator.Models
     public int Wis { get; set; }
     public int Cha { get; set; }
 
+    
+    public string Alignment { get; set; }
     public string Bond { get; set; }
     public string Flaw { get; set; }
     public string Ideal { get; set; }
@@ -59,14 +61,35 @@ namespace NameIsNameCharacterGenerator.Models
 
     public int HP { get; set; }
     public int AC { get; set; }
-    public int HitDice { get; set; }
+    public string HitDice { get; set; }
 
     public List<string> Equipment { get; set; }
     public List<string> Features_Traits { get; set; }
     public List<string> Prof_Lang { get; set; }
 
-    public CharacterSheet()
-    {
+        public int Acrobatics { get; set; }
+        public int AnimalHandling { get; set; }
+        public int Arcana { get; set; }
+        public int Athletics { get; set; }
+        public int Deception { get; set; }
+        public int History { get; set; }
+        public int Insight { get; set; }
+        public int Intimidation { get; set; }
+        public int Investigation { get; set; }
+        public int Medicine { get; set; }
+        public int Nature { get; set; }
+        public int Perception { get; set; }
+        public int Performance { get; set; }
+        public int Persuasion { get; set; }
+        public int Religion { get; set; }
+        public int SlightOfHand { get; set; }
+        public int Stealth { get; set; }
+        public int Survival { get; set; }
+
+        public CharacterSheet()
+        {
+            Prof_Lang = new List<string>();
+
         Array values = Enum.GetValues(typeof(Race));
         Random random = new Random();
         Race r = (Race)values.GetValue(random.Next(values.Length));
@@ -91,7 +114,7 @@ namespace NameIsNameCharacterGenerator.Models
         Int = SetAbilityScore();
         Wis = SetAbilityScore();
         Cha = SetAbilityScore();
-            Prof_Lang.Add("Common");
+        Prof_Lang.Add("Common");
         switch (r)
         {
             case Race.Dwarf:
@@ -192,9 +215,15 @@ namespace NameIsNameCharacterGenerator.Models
         HitDice = $"1D{HP}";
 
             name = firstNames[rand.Next(0, firstNames.Count)];
+            Alignment = DecideAlignmnet();
         }
 
-
+        private string DecideAlignmnet()
+        {
+            List<string> allOfEm = new List<string> { "Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil" };
+            Random rand = new Random();
+            return allOfEm[rand.Next(0, allOfEm.Count)];
+        }
 
         private int DetermineHp(int ConMod) {
             int hp = 0;
@@ -289,11 +318,18 @@ namespace NameIsNameCharacterGenerator.Models
 
         private void SetBFIP(Background b)
         {
+            //string startupPath = System.IO.Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+
             //You need to change to file paths based on your personal computers
-            Bond = SetBackgroundTrait(ReadFile(@"\CSVs\Bond.csv", b), 6);
-            Flaw = SetBackgroundTrait(ReadFile(@"\CSVs\Flaws.csv", b), 6);
-            Ideal = SetBackgroundTrait(ReadFile(@"\CSVs\Ideals.csv", b), 6);
-            PersonalityTrait = SetBackgroundTrait(ReadFile(@"\CSVs\PersonalityTrait.csv", b), 8);
+            //Bond = SetBackgroundTrait(ReadFile($@"{startupPath}\CSVs\Bond.csv", b), 6);
+            //Flaw = SetBackgroundTrait(ReadFile(@"\CSVs\Flaws.csv", b), 6);
+            //Ideal = SetBackgroundTrait(ReadFile(@"\CSVs\Ideals.csv", b), 6);
+            //PersonalityTrait = SetBackgroundTrait(ReadFile(@"\CSVs\PersonalityTrait.csv", b), 8);
+
+            Bond = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\Bond.csv", b), 6);
+            Flaw = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\Flaws.csv", b), 6);
+            Ideal = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\Ideals.csv", b), 6);
+            PersonalityTrait = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\PersonalityTrait.csv", b), 8);
         }
 
         private List<string> ReadFile(string filename, Background b)

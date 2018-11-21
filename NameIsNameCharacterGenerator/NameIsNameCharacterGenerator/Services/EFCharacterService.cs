@@ -17,36 +17,36 @@ namespace NameIsNameCharacterGenerator.Services
                     Name = model.name,
                     Class = model.characterClass.ToString(),
                     Race = model.race.ToString(),
-                    //Alignment
+                    Alignment = model.Alignment,
                     Str = model.Str,
                     Dex = model.Dex,
                     Con = model.Con,
                     Int = model.Int,
                     Wis = model.Wis,
                     Cha = model.Cha,
-                    //Prof = model.
-                    //Acrobatics = model.
-                    //AniamlHandling
-                    //Arcana
-                    //Athletics
-                    //Deception
-                    //History
-                    //Insight
-                    //Intimidation
-                    //Investigation
-                    //Medicine
-                    //Nature
-                    //Perception
-                    //Performance
-                    //Persuasion
-                    //Religion
-                    //SlightOfHand
-                    //Stealth
-                    //Survival
+                    //Prof = model.Pro
+                    Acrobatics = model.Acrobatics,
+                    AniamlHandling = model.AnimalHandling,
+                    Arcana = model.Arcana,
+                    Athletics = model.Athletics,
+                    Deception = model.Deception,
+                    History = model.History,
+                    Insight = model.Insight,
+                    Intimidation = model.Intimidation,
+                    Investigation = model.Investigation,
+                    Medicine = model.Medicine,
+                    Nature = model.Nature,
+                    Perception = model.Perception,
+                    Performance = model.Performance,
+                    Persuasion = model.Persuasion,
+                    Religion = model.Religion,
+                    SlightOfHand = model.SlightOfHand,
+                    Stealth = model.Stealth,
+                    Survival = model.Survival,
                     AC = model.AC,
                     //Speed = model
                     HP = model.HP,
-                    //HitDice = model
+                    HitDice = model.HitDice
                     
                 };
 

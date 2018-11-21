@@ -30,10 +30,7 @@ namespace NameIsNameCharacterGenerator.Controllers
         public ActionResult AllCharacters()
         {
             //ViewBag.Message = "All of the characters made by the program!";
-            CharacterList model = new CharacterList()
-            {
-                Characters = service.GetAllCharacters()
-            };
+            CharacterList model = service.GetAllCharacters();
 
             return View(model);
         }
@@ -44,9 +41,11 @@ namespace NameIsNameCharacterGenerator.Controllers
             return View(model);
         }
 
-        //public ActionResult CreateNewCharacter()
-        //{
-        //    // TODO: adding a random characer to the database
-        //}
+        public ActionResult CreateNewCharacter()
+        {
+            CharacterSheet model = new CharacterSheet();
+            service.AddNewCharacter(model);
+            return View("Index");
+        }
     }
 }
