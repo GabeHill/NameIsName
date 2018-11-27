@@ -47,9 +47,14 @@ namespace NameIsNameCharacterGenerator.Services
                     //Speed = model
                     HP = model.HP,
                     HitDice = model.HitDice
-                    
+
                 };
 
+                c.Ideal.Ideals = model.Ideal;
+                foreach (string lang in model.Prof_Lang)
+                {
+                    c.Prof_Lang.Prof_Lang1 = lang;
+                }
                 context.Characters.Add(c);
                 context.SaveChanges();
             }
