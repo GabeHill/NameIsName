@@ -256,7 +256,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\NewCharacter.cshtml" />
-    <Content Include="Views\Home\AllCharacters.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <EntityDeploy Include="Services\CharacterService.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -265,6 +264,7 @@
     <Content Include="Services\CharacterService.edmx.diagram">
       <DependentUpon>CharacterService.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Home\AllCharacters.cshtml" />
     <Content Include="Views\Home\Character.cshtml" />
   </ItemGroup>
   <ItemGroup>

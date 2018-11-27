@@ -41,6 +41,7 @@ namespace NameIsNameCharacterGenerator.Controllers
             return View(model);
         }
 
+
         public ActionResult CreateNewCharacter()
         {
             CharacterSheet model = new CharacterSheet();
