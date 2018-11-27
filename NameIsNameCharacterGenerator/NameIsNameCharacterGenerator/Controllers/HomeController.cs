@@ -28,15 +28,21 @@ namespace NameIsNameCharacterGenerator.Controllers
 
         public ActionResult AllCharacters()
         {
-            ViewBag.Message = "All of the characters made by the program!";
 
-            return View();
+			CharacterList CL = new CharacterList();
+			EFCharacterService ef = new EFCharacterService();
+			CL.AllCharacters = ef.GetAllCharacters();
+
+            return View(CL);
         }
+		public ActionResult Character( int charID)
+		{
 
+			EFCharacterService ef = new EFCharacterService();
+			Character character = ef.GetCharacterById(charID);
 
-		//public ActionResult CreateNewCharacter()
-		//{
-		//    // TODO: adding a random characer to the database
-		//}
+			return View(character);
+		}
+
 	}
 }

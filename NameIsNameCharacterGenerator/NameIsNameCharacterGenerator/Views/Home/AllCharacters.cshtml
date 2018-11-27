@@ -1,12 +1,34 @@
 ﻿@model NameIsNameCharacterGenerator.Models.CharacterList
 
 @{
+    int num = 0;
     ViewBag.Title = "AllCharacters";
 }
 
 <h2>AllCharacters</h2>
 
-@foreach (var item in Model.AllCharacters)
+@foreach (var character in Model.AllCharacters)
 {
-    <p>@item.Name</p>
-}
+
+    <div class="card-deck">
+    <div class="card" style="width:400px">
+        @*<img class="card-img-top" src="@character.Image" alt="@character.Name">*@
+        <div class="card-body d-flex flex-column">
+            <h4 class="card-title">
+                @character.Name
+                <span style="float:right">@character.Class</span>
+            </h4>
+            <p class="card-text">@*@character.Description*@</p>
+            <br />
+            @Html.ActionLink("More Info", "Character", new { charID = character.CharcterID }, new { @*@class = "btn btn-primary btn-block mt-auto"*@})
+        </div>
+    </div>
+    if (i == 4)
+    {
+        i = 0;
+        @:</div>
+        @:<br />
+        @:<div class="card-deck">
+        }
+    </div>
+    }

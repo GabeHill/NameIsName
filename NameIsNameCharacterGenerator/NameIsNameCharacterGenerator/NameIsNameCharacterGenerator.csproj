@@ -257,6 +257,7 @@
       <DependentUpon>CharacterService.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Home\AllCharacters.cshtml" />
+    <Content Include="Views\Home\Character.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
