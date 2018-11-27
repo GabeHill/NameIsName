@@ -40,14 +40,7 @@ namespace NameIsNameCharacterGenerator.Controllers
             Character model = service.GetCharacterById(id);
             return View(model);
         }
-		public ActionResult Character( int charID)
-		{
 
-			EFCharacterService ef = new EFCharacterService();
-			Character character = ef.GetCharacterById(charID);
-
-			return View(character);
-		}
 
         public ActionResult CreateNewCharacter()
         {
