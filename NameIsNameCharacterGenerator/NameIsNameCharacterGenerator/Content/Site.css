@@ -31,6 +31,10 @@ textarea {
     margin: 10px;
 }
 
+.clear {
+    clear: both;
+}
+
 .navbar {
     background-color: #d7d2b7
 }
@@ -42,4 +46,23 @@ a.navbar-brand {
     height: 50px;
     text-indent: -9999px;
 }
-   
+
+.scoreBox {
+    width: 135px;
+    height: 70px;
+    margin: 5px;
+    padding: 5px;
+    border: solid 2px black;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.skills {
+    display: grid;
+    width: 200px;
+    float: left;
+    margin: 5px;
+    padding: 5px;
+    border: solid 2px black;
+    list-style-type: none;
+}
