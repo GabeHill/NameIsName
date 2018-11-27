@@ -1,13 +1,16 @@
-﻿@model NameIsNameCharacterGenerator.Models.CharacterList
-
+@using NameIsNameCharacterGenerator.Services
+@using NameIsNameCharacterGenerator.Models
+@model CharacterList
 @{
     int num = 0;
-    ViewBag.Title = "AllCharacters";
+
+    ViewBag.Title = "All Characters";
 }
+
 
 <h2>AllCharacters</h2>
 
-@foreach (var character in Model.AllCharacters)
+@foreach (var character in Model.Characters)
 {
 
     <div class="card-deck">
@@ -32,3 +35,24 @@
         }
     </div>
     }
+
+@foreach(Character c in Model.Characters)
+{
+    <div class="characterHead">
+        <h4><a href="~/Home/Character/@c.CharcterID">Name: @c.Name</a></h4>
+        <h5>Race: @c.Race</h5>
+        <h5>Class: @c.Class</h5>
+        <h5>Alignment: @c.Alignment</h5>
+        <h5>Background: </h5>
+    </div>
+    <div class="characterBody">
+        <div class="abilityScores">
+            <span>Strength: @c.Str</span>
+            <span>Dexterity: @c.Dex</span>
+            <span>Constitution: @c.Con</span>
+            <span>Intelligence: @c.Int</span>
+            <span>Wisdom: @c.Wis</span>
+            <span>Charisma: @c.Cha</span>
+        </div>
+    </div>
+}

@@ -215,6 +215,14 @@
     <Content Include="CSVs\Flaws.csv" />
     <Content Include="CSVs\Ideals.csv" />
     <Content Include="CSVs\PersonalityTrait.csv" />
+    <Content Include="CSVs\ASI.csv" />
+    <Content Include="CSVs\BackgroundFeature.csv" />
+    <Content Include="CSVs\ClassEquipment.csv" />
+    <Content Include="CSVs\ClassFeatures.csv" />
+    <None Include="CSVs\ClassProficiecies.csv" />
+    <Content Include="CSVs\ClassSkills.csv" />
+    <Content Include="CSVs\ClericDomainBonuses.csv" />
+    <Content Include="CSVs\Languages.csv" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
