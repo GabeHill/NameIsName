@@ -25,47 +25,47 @@ namespace NameIsNameCharacterGenerator.Models
 
 
     public class CharacterSheet
-{
+    {
 
         static Random rand = new Random();
 
         public List<string> firstNames => new List<string> { "Eva", "Falyne", "Genaesis", "Genaesys", "Gianna", "Jianna", "Janna", "Graece", "Grassa", "Haenna", "Hanna", "Gael", "Gayl", "Gayel", "Gaeus", "Gavyn", "Gaevyn", "Goshwa", "Joshoe", "Graysus", "Graysen", "Gwann", "Ewan", "Gwyllam", "Gwyllem", "Haddeus", "Hudsyn", "Haesoe", "Haesys" };
 
-        public List<string> languages = new List<string> { "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Deep Speech", "Draconic", "Infernal", "Primordial", "Sylvan", "Undercommon"};
+        public List<string> languages = new List<string> { "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Deep Speech", "Draconic", "Infernal", "Primordial", "Sylvan", "Undercommon" };
 
-    private Race dragonborn;
-    private CharacterClass barbarian;
-    private Background acolyte;
+        private Race dragonborn;
+        private CharacterClass barbarian;
+        private Background acolyte;
 
-    public string name { get; set; }
+        public string name { get; set; }
 
-    public Race race { get; set; }
+        public Race race { get; set; }
 
-    public CharacterClass characterClass { get; set; }
+        public CharacterClass characterClass { get; set; }
 
-    public Background background { get; set; }
+        public Background background { get; set; }
 
-    public int Str { get; set; }
-    public int Dex { get; set; }
-    public int Con { get; set; }
-    public int Int { get; set; }
-    public int Wis { get; set; }
-    public int Cha { get; set; }
+        public int Str { get; set; }
+        public int Dex { get; set; }
+        public int Con { get; set; }
+        public int Int { get; set; }
+        public int Wis { get; set; }
+        public int Cha { get; set; }
 
-    
-    public string Alignment { get; set; }
-    public string Bond { get; set; }
-    public string Flaw { get; set; }
-    public string Ideal { get; set; }
-    public string PersonalityTrait { get; set; }
 
-    public int HP { get; set; }
-    public int AC { get; set; }
-    public string HitDice { get; set; }
+        public string Alignment { get; set; }
+        public string Bond { get; set; }
+        public string Flaw { get; set; }
+        public string Ideal { get; set; }
+        public string PersonalityTrait { get; set; }
 
-    public List<string> Equipment { get; set; }
-    public List<string> Features_Traits { get; set; }
-    public List<string> Prof_Lang { get; set; }
+        public int HP { get; set; }
+        public int AC { get; set; }
+        public string HitDice { get; set; }
+
+        public List<string> Equipment { get; set; }
+        public List<string> Features_Traits { get; set; }
+        public List<string> Prof_Lang { get; set; }
 
         public int Acrobatics { get; set; }
         public int AnimalHandling { get; set; }
@@ -89,130 +89,155 @@ namespace NameIsNameCharacterGenerator.Models
         public CharacterSheet()
         {
             Prof_Lang = new List<string>();
+            Equipment = new List<string>();
+            Features_Traits = new List<string>();
 
-        Array values = Enum.GetValues(typeof(Race));
-        Random random = new Random();
-        Race r = (Race)values.GetValue(random.Next(values.Length));
+            Array values = Enum.GetValues(typeof(Race));
+            Random random = new Random();
+            Race r = (Race)values.GetValue(random.Next(values.Length));
 
-        Array values2 = Enum.GetValues(typeof(CharacterClass));
-        Random random2 = new Random();
-        CharacterClass c = (CharacterClass)values2.GetValue(random2.Next(values2.Length));
+            Array values2 = Enum.GetValues(typeof(CharacterClass));
+            Random random2 = new Random();
+            CharacterClass c = (CharacterClass)values2.GetValue(random2.Next(values2.Length));
 
-        Array values3 = Enum.GetValues(typeof(Background));
-        Random random3 = new Random();
-        Background b = (Background)values3.GetValue(random3.Next(values3.Length));
+            Array values3 = Enum.GetValues(typeof(Background));
+            Random random3 = new Random();
+            Background b = (Background)values3.GetValue(random3.Next(values3.Length));
 
-        SetBFIP(b);
+            SetBFIP(b);
 
-        race = r;
-        characterClass = c;
-        background = b;
+            race = r;
+            characterClass = c;
+            background = b;
 
-        Str = SetAbilityScore();
-        Dex = SetAbilityScore();
-        Con = SetAbilityScore();
-        Int = SetAbilityScore();
-        Wis = SetAbilityScore();
-        Cha = SetAbilityScore();
-        Prof_Lang.Add("Common");
-        switch (r)
-        {
-            case Race.Dwarf:
-                Str += 2;
-                Wis += 1;
-                    List<string> tools = new List<string>{ "Brewer's supplies", "Mason's tools","Smith's tools" };
-                    Prof_Lang.Add(tools[rand.Next(0,4)]);
+            Str = SetAbilityScore();
+            Dex = SetAbilityScore();
+            Con = SetAbilityScore();
+            Int = SetAbilityScore();
+            Wis = SetAbilityScore();
+            Cha = SetAbilityScore();
+            Prof_Lang.Add("Common");
+            switch (r)
+            {
+                case Race.Dwarf:
+                    Str += 2;
+                    Wis += 1;
+                    List<string> tools = new List<string> { "Brewer's supplies", "Mason's tools", "Smith's tools" };
+                    Prof_Lang.Add(tools[rand.Next(0, 4)]);
                     Prof_Lang.Add("Dwarvish");
-                break;
-            case Race.Elf:
-                Dex += 2;
-                Int += 1;
+                    break;
+                case Race.Elf:
+                    Dex += 2;
+                    Int += 1;
                     Perception += 2;
                     Prof_Lang.Add("Elvish");
-                break;
-            case Race.Halfling:
-                Cha += 1;
-                Dex += 2;
+                    break;
+                case Race.Halfling:
+                    Cha += 1;
+                    Dex += 2;
                     Prof_Lang.Add("Halfling");
-                break;
-            case Race.Human:
-                Str += 1;
-                Dex += 1;
-                Con += 1;
-                Int += 1;
-                Wis += 1;
-                Cha += 1;
+                    break;
+                case Race.Human:
+                    Str += 1;
+                    Dex += 1;
+                    Con += 1;
+                    Int += 1;
+                    Wis += 1;
+                    Cha += 1;
                     Prof_Lang.Add(languages[rand.Next(0, languages.Count)]);
-                break;
-            case Race.Dragonborn:
-                Str += 2;
-                Cha += 1;
+                    break;
+                case Race.Dragonborn:
+                    Str += 2;
+                    Cha += 1;
                     Prof_Lang.Add("Draconic");
-                break;
-            case Race.Gnome:
-                Int += 2;
+                    break;
+                case Race.Gnome:
+                    Int += 2;
                     Prof_Lang.Add("Gnomish");
-                break;
-            case Race.HalfElf:
-                Cha += 2;
+                    break;
+                case Race.HalfElf:
+                    Cha += 2;
                     Prof_Lang.Add("Elvish");
                     string l;
-                    do {
+                    do
+                    {
                         l = languages[rand.Next(0, languages.Count)];
                     } while (l.Equals("Elvish"));
                     Prof_Lang.Add(l);
-                break;
-            case Race.HalfOrc:
-                Str += 2;
-                Con += 1;
+                    break;
+                case Race.HalfOrc:
+                    Str += 2;
+                    Con += 1;
                     Intimidation += 2;
                     Prof_Lang.Add("Orc");
-                break;
-            case Race.Tiefling:
-                Int += 1;
-                Cha += 2;
+                    break;
+                case Race.Tiefling:
+                    Int += 1;
+                    Cha += 2;
                     Prof_Lang.Add("Infernal");
-                break;
-            default:
-                break;
-        }
-        int StrMod = DetermineMod(Str);
-        int DexMod = DetermineMod(Dex);
-        int ConMod = DetermineMod(Con);
-        int IntMod = DetermineMod(Int);
-        int WisMod = DetermineMod(Wis);
-        int ChaMod = DetermineMod(Cha);
+                    break;
+                default:
+                    break;
+            }
+            int StrMod = DetermineMod(Str);
+            int DexMod = DetermineMod(Dex);
+            int ConMod = DetermineMod(Con);
+            int IntMod = DetermineMod(Int);
+            int WisMod = DetermineMod(Wis);
+            int ChaMod = DetermineMod(Cha);
 
-        Acrobatics = DexMod;
-        AnimalHandling = WisMod;
-        Arcana = IntMod;
-        Athletics = StrMod;
-        Deception = ChaMod;
-        History = IntMod;
-        Insight = WisMod;
-        Intimidation = ChaMod;
-        Investigation = IntMod;
-        Medicine = WisMod;
-        Nature = IntMod;
-        Perception = ChaMod;
-        Performance = ChaMod;
-        Persuasion = ChaMod;
-        Religion = IntMod;
-        SlightOfHand = DexMod;
-        Stealth = DexMod;
-        Survival = WisMod;
+            int count = 0;
+            while (count != IntMod)
+            {
+                bool isKnown = false;
+                string tempLang = languages[rand.Next(0, languages.Count)];
+                foreach (string lang in Prof_Lang)
+                {
+                    if (tempLang == lang)
+                    {
+                        isKnown = true;
+                    }
+                }
+                if (!isKnown)
+                {
+                    Prof_Lang.Add(tempLang);
+                    count++;
+                }
 
-        HP = DetermineHp(ConMod);
+            }
+
+            Acrobatics = DexMod;
+            AnimalHandling = WisMod;
+            Arcana = IntMod;
+            Athletics = StrMod;
+            Deception = ChaMod;
+            History = IntMod;
+            Insight = WisMod;
+            Intimidation = ChaMod;
+            Investigation = IntMod;
+            Medicine = WisMod;
+            Nature = IntMod;
+            Perception = ChaMod;
+            Performance = ChaMod;
+            Persuasion = ChaMod;
+            Religion = IntMod;
+            SlightOfHand = DexMod;
+            Stealth = DexMod;
+            Survival = WisMod;
+
+            HP = DetermineHp(ConMod);
 
             AC = 10 + DexMod;
 
-            if (characterClass == CharacterClass.Barbarian) {
+            if (characterClass == CharacterClass.Barbarian)
+            {
                 AC += ConMod;
-            }   
-            if (characterClass == CharacterClass.Monk) {
+            }
+            if (characterClass == CharacterClass.Monk)
+            {
                 AC += WisMod;
             }
-        HitDice = $"1D{HP}";
+            HitDice = $"1D{HP}";
 
             name = firstNames[rand.Next(0, firstNames.Count)];
             Alignment = DecideAlignmnet();
@@ -225,7 +250,8 @@ namespace NameIsNameCharacterGenerator.Models
             return allOfEm[rand.Next(0, allOfEm.Count)];
         }
 
-        private int DetermineHp(int ConMod) {
+        private int DetermineHp(int ConMod)
+        {
             int hp = 0;
             switch (characterClass)
             {
