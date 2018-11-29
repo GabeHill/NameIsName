@@ -51,10 +51,11 @@ namespace NameIsNameCharacterGenerator.Services
                 };
 
                 c.Ideal.Ideals = model.Ideal;
-                foreach (string lang in model.Prof_Lang)
-                {
-                    c.Prof_Lang.Prof_Lang1 = lang;
-                }
+                c.Prof_Lang.Prof_Lang1 = model.Prof_Lang.First();
+                //foreach (string lang in model.Prof_Lang)
+                //{
+                //    c.Prof_Lang.Prof_Lang1 = lang;
+                //}
                 context.Characters.Add(c);
                 context.SaveChanges();
             }
