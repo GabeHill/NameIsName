@@ -352,10 +352,10 @@ namespace NameIsNameCharacterGenerator.Models
             //Ideal = SetBackgroundTrait(ReadFile(@"\CSVs\Ideals.csv", b), 6);
             //PersonalityTrait = SetBackgroundTrait(ReadFile(@"\CSVs\PersonalityTrait.csv", b), 8);
 
-            Bond = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\Bond.csv", b), 6);
-            Flaw = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\Flaws.csv", b), 6);
-            Ideal = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\Ideals.csv", b), 6);
-            PersonalityTrait = SetBackgroundTrait(ReadFile(@"C:\Users\Ryan Neumont Laptop\source\repos\GabeHill\NameIsName\NameIsNameCharacterGenerator\NameIsNameCharacterGenerator\CSVs\PersonalityTrait.csv", b), 8);
+            Bond = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\Bond.csv"), b), 6);
+            Flaw = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\Flaws.csv"), b), 6);
+            Ideal = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\Ideals.csv"), b), 6);
+            PersonalityTrait = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\PersonalityTrait.csv"), b), 8);
         }
 
         private List<string> ReadFile(string filename, Background b)

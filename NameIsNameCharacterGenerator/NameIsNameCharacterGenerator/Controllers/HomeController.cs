@@ -13,7 +13,7 @@ namespace NameIsNameCharacterGenerator.Controllers
         ICharacterService service = new EFCharacterService();
         public ActionResult Index()
         {
-            CharacterSheet sheet = new CharacterSheet(Race.Dragonborn, CharacterClass.Barbarian, Background.Acolyte);
+            CharacterSheet sheet = new CharacterSheet();
 
             return View();
         }
