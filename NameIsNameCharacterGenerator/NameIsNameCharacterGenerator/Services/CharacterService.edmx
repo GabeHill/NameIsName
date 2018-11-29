@@ -6,11 +6,14 @@
     <edmx:StorageModels>
     <Schema Namespace="CharacterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6013: The table/view 'Characters.dbo.Bonds' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'Characters.dbo.Bonds' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Bonds">
-          <Property Name="CharcterID" Type="int" />
+          <Key>
+            <PropertyRef Name="CharcterID" />
+          </Key>
+          <Property Name="CharcterID" Type="int" Nullable="false" />
           <Property Name="Bond" Type="varchar" MaxLength="45" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="Characters">
           <Key>
             <PropertyRef Name="CharcterID" />
@@ -69,11 +72,14 @@ warning 6002: The table/view 'Characters.dbo.Features_Traits' does not have a pr
           <Property Name="Features_Trait" Type="varchar" MaxLength="45" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'Characters.dbo.Flaws' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'Characters.dbo.Flaws' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Flaws">
-          <Property Name="CharacterID" Type="int" />
+          <Key>
+            <PropertyRef Name="CharacterID" />
+          </Key>
+          <Property Name="CharacterID" Type="int" Nullable="false" />
           <Property Name="Flaws" Type="varchar" MaxLength="45" />
-        </EntityType>-->
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Characters.dbo.Ideals' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Ideals">
@@ -84,11 +90,14 @@ warning 6002: The table/view 'Characters.dbo.Ideals' does not have a primary key
           <Property Name="Ideals" Type="varchar" MaxLength="45" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'Characters.dbo.PersonalityTraits' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'Characters.dbo.PersonalityTraits' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PersonalityTraits">
-          <Property Name="PersonalityTraits" Type="varchar" MaxLength="45" />
+          <Key>
+            <PropertyRef Name="PersonalityTraits" />
+          </Key>
+          <Property Name="PersonalityTraits" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="CharacterID" Type="int" />
-        </EntityType>-->
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Prof_Lang">
@@ -98,12 +107,30 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
           <Property Name="CharcterID" Type="int" Nullable="false" />
           <Property Name="Prof_Lang" Type="varchar" MaxLength="45" />
         </EntityType>
-        <!--Errors Found During Generation:
-error 6004: The table 'Characters.dbo.Bonds' is referenced by a relationship, but cannot be found.
-        <Association Name="BondCharcterID" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'Characters.dbo.PersonalityTraits' is referenced by a relationship, but cannot be found.
-        <Association Name="CharacterID" />-->
+        <Association Name="BondCharcterID">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+          <End Role="Bonds" Type="Self.Bonds" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Bonds">
+              <PropertyRef Name="CharcterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CharacterID">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="0..1" />
+          <End Role="PersonalityTraits" Type="Self.PersonalityTraits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="PersonalityTraits">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="CharcterID">
           <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
           <End Role="Ideals" Type="Self.Ideals" Multiplicity="0..1" />
@@ -128,9 +155,18 @@ error 6004: The table 'Characters.dbo.PersonalityTraits' is referenced by a rela
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'Characters.dbo.Flaws' is referenced by a relationship, but cannot be found.
-        <Association Name="FlawCharcterID" />-->
+        <Association Name="FlawCharcterID">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+          <End Role="Flaws" Type="Self.Flaws" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Flaws">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FTCharcterID">
           <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
           <End Role="Features_Traits" Type="Self.Features_Traits" Multiplicity="0..1" />
@@ -157,6 +193,12 @@ error 6004: The table 'Characters.dbo.Flaws' is referenced by a relationship, bu
         </Association>
         <EntityContainer Name="CharacterModelStoreContainer">
           <EntitySet Name="Characters" EntityType="Self.Characters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bonds" EntityType="Self.Bonds" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Bonds].[CharcterID] AS [CharcterID], 
+    [Bonds].[Bond] AS [Bond]
+    FROM [dbo].[Bonds] AS [Bonds]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Equipment" EntityType="Self.Equipment" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Equipment].[CharcterID] AS [CharcterID], 
@@ -169,11 +211,23 @@ error 6004: The table 'Characters.dbo.Flaws' is referenced by a relationship, bu
     [Features_Traits].[Features_Trait] AS [Features_Trait]
     FROM [dbo].[Features_Traits] AS [Features_Traits]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Flaws" EntityType="Self.Flaws" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Flaws].[CharacterID] AS [CharacterID], 
+    [Flaws].[Flaws] AS [Flaws]
+    FROM [dbo].[Flaws] AS [Flaws]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Ideals" EntityType="Self.Ideals" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Ideals].[CharacterID] AS [CharacterID], 
     [Ideals].[Ideals] AS [Ideals]
     FROM [dbo].[Ideals] AS [Ideals]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PersonalityTraits" EntityType="Self.PersonalityTraits" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PersonalityTraits].[PersonalityTraits] AS [PersonalityTraits], 
+    [PersonalityTraits].[CharacterID] AS [CharacterID]
+    FROM [dbo].[PersonalityTraits] AS [PersonalityTraits]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Prof_Lang" EntityType="Self.Prof_Lang" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -181,6 +235,14 @@ error 6004: The table 'Characters.dbo.Flaws' is referenced by a relationship, bu
     [Prof_Lang].[Prof_Lang] AS [Prof_Lang]
     FROM [dbo].[Prof_Lang] AS [Prof_Lang]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="BondCharcterID" Association="Self.BondCharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Bonds" EntitySet="Bonds" />
+          </AssociationSet>
+          <AssociationSet Name="CharacterID" Association="Self.CharacterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="PersonalityTraits" EntitySet="PersonalityTraits" />
+          </AssociationSet>
           <AssociationSet Name="CharcterID" Association="Self.CharcterID">
             <End Role="Characters" EntitySet="Characters" />
             <End Role="Ideals" EntitySet="Ideals" />
@@ -188,6 +250,10 @@ error 6004: The table 'Characters.dbo.Flaws' is referenced by a relationship, bu
           <AssociationSet Name="EquipCharcterID" Association="Self.EquipCharcterID">
             <End Role="Characters" EntitySet="Characters" />
             <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FlawCharcterID" Association="Self.FlawCharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Flaws" EntitySet="Flaws" />
           </AssociationSet>
           <AssociationSet Name="FTCharcterID" Association="Self.FTCharcterID">
             <End Role="Characters" EntitySet="Characters" />
@@ -244,6 +310,9 @@ error 6004: The table 'Characters.dbo.Flaws' is referenced by a relationship, bu
           <NavigationProperty Name="Equipment" Relationship="Self.EquipCharcterID" FromRole="Characters" ToRole="Equipment" />
           <NavigationProperty Name="Features_Traits" Relationship="Self.FTCharcterID" FromRole="Characters" ToRole="Features_Traits" />
           <NavigationProperty Name="Prof_Lang" Relationship="Self.PLCharcterID" FromRole="Characters" ToRole="Prof_Lang" />
+          <NavigationProperty Name="Bond" Relationship="CharacterModel.BondCharcterID" FromRole="Character" ToRole="Bond" />
+          <NavigationProperty Name="PersonalityTraits" Relationship="CharacterModel.CharacterID" FromRole="Character" ToRole="PersonalityTrait" />
+          <NavigationProperty Name="Flaw" Relationship="CharacterModel.FlawCharcterID" FromRole="Character" ToRole="Flaw" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
@@ -347,7 +416,82 @@ error 6004: The table 'Characters.dbo.Flaws' is referenced by a relationship, bu
             <End Role="Characters" EntitySet="Characters" />
             <End Role="Prof_Lang" EntitySet="Prof_Lang" />
           </AssociationSet>
+          <EntitySet Name="Bonds" EntityType="CharacterModel.Bond" />
+          <EntitySet Name="Flaws" EntityType="CharacterModel.Flaw" />
+          <EntitySet Name="PersonalityTraits" EntityType="CharacterModel.PersonalityTrait" />
+          <AssociationSet Name="BondCharcterID" Association="CharacterModel.BondCharcterID">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="Bond" EntitySet="Bonds" />
+          </AssociationSet>
+          <AssociationSet Name="CharacterID" Association="CharacterModel.CharacterID">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="PersonalityTrait" EntitySet="PersonalityTraits" />
+          </AssociationSet>
+          <AssociationSet Name="FlawCharcterID" Association="CharacterModel.FlawCharcterID">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="Flaw" EntitySet="Flaws" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Bond">
+          <Key>
+            <PropertyRef Name="CharcterID" />
+          </Key>
+          <Property Name="CharcterID" Type="Int32" Nullable="false" />
+          <Property Name="Bond1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Character" Relationship="CharacterModel.BondCharcterID" FromRole="Bond" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="Flaw">
+          <Key>
+            <PropertyRef Name="CharacterID" />
+          </Key>
+          <Property Name="CharacterID" Type="Int32" Nullable="false" />
+          <Property Name="Flaws" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Character" Relationship="CharacterModel.FlawCharcterID" FromRole="Flaw" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="PersonalityTrait">
+          <Key>
+            <PropertyRef Name="PersonalityTraits" />
+          </Key>
+          <Property Name="PersonalityTraits" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="CharacterID" Type="Int32" />
+          <NavigationProperty Name="Character" Relationship="CharacterModel.CharacterID" FromRole="PersonalityTrait" ToRole="Character" />
+        </EntityType>
+        <Association Name="BondCharcterID">
+          <End Type="CharacterModel.Character" Role="Character" Multiplicity="1" />
+          <End Type="CharacterModel.Bond" Role="Bond" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Bond">
+              <PropertyRef Name="CharcterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CharacterID">
+          <End Type="CharacterModel.Character" Role="Character" Multiplicity="0..1" />
+          <End Type="CharacterModel.PersonalityTrait" Role="PersonalityTrait" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="PersonalityTrait">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FlawCharcterID">
+          <End Type="CharacterModel.Character" Role="Character" Multiplicity="1" />
+          <End Type="CharacterModel.Flaw" Role="Flaw" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Flaw">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -423,6 +567,30 @@ error 6004: The table 'Characters.dbo.Flaws' is referenced by a relationship, bu
               <MappingFragment StoreEntitySet="Prof_Lang">
                 <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
                 <ScalarProperty Name="Prof_Lang1" ColumnName="Prof_Lang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bonds">
+            <EntityTypeMapping TypeName="CharacterModel.Bond">
+              <MappingFragment StoreEntitySet="Bonds">
+                <ScalarProperty Name="Bond1" ColumnName="Bond" />
+                <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flaws">
+            <EntityTypeMapping TypeName="CharacterModel.Flaw">
+              <MappingFragment StoreEntitySet="Flaws">
+                <ScalarProperty Name="Flaws" ColumnName="Flaws" />
+                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalityTraits">
+            <EntityTypeMapping TypeName="CharacterModel.PersonalityTrait">
+              <MappingFragment StoreEntitySet="PersonalityTraits">
+                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
+                <ScalarProperty Name="PersonalityTraits" ColumnName="PersonalityTraits" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

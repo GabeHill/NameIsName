@@ -12,6 +12,8 @@ namespace NameIsNameCharacterGenerator.Services
         {
             using (var context = new CharacterEntities())
             {
+                Ideal ideal = new Ideal();
+                ideal.Ideals = model.Ideal;
                 Character c = new Character()
                 {
                     Name = model.name,
@@ -46,16 +48,19 @@ namespace NameIsNameCharacterGenerator.Services
                     AC = model.AC,
                     //Speed = model
                     HP = model.HP,
-                    HitDice = model.HitDice
+                    HitDice = model.HitDice,
+                    Ideal = ideal
+
 
                 };
 
                 c.Ideal.Ideals = model.Ideal;
-                c.Prof_Lang.Prof_Lang1 = model.Prof_Lang.First();
-                //foreach (string lang in model.Prof_Lang)
-                //{
-                //    c.Prof_Lang.Prof_Lang1 = lang;
-                //}
+                foreach (string lang in model.Prof_Lang)
+                {
+                    Prof_Lang temp = new Prof_Lang();
+                    temp.Prof_Lang1 = lang;
+                    c.Prof_Lang = temp;
+                }
                 context.Characters.Add(c);
                 context.SaveChanges();
             }
