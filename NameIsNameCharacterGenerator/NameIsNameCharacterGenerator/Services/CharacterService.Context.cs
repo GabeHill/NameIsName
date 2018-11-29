@@ -30,5 +30,8 @@ namespace NameIsNameCharacterGenerator.Services
         public virtual DbSet<Features_Traits> Features_Traits { get; set; }
         public virtual DbSet<Ideal> Ideals { get; set; }
         public virtual DbSet<Prof_Lang> Prof_Lang { get; set; }
+        public virtual DbSet<Bond> Bonds { get; set; }
+        public virtual DbSet<Flaw> Flaws { get; set; }
+        public virtual DbSet<PersonalityTrait> PersonalityTraits { get; set; }
     }
 }

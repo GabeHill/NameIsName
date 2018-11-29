@@ -14,6 +14,12 @@
         <AssociationConnector Association="CharacterModel.EquipCharcterID" ManuallyRouted="false" />
         <AssociationConnector Association="CharacterModel.FTCharcterID" ManuallyRouted="false" />
         <AssociationConnector Association="CharacterModel.PLCharcterID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CharacterModel.Bond" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="CharacterModel.Flaw" Width="1.5" PointX="3" PointY="15.375" />
+        <EntityTypeShape EntityType="CharacterModel.PersonalityTrait" Width="1.5" PointX="3" PointY="13" />
+        <AssociationConnector Association="CharacterModel.BondCharcterID" />
+        <AssociationConnector Association="CharacterModel.CharacterID" />
+        <AssociationConnector Association="CharacterModel.FlawCharcterID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
