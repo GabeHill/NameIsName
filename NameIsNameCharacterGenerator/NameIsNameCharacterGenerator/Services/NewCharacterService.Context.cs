@@ -13,10 +13,10 @@ namespace NameIsNameCharacterGenerator.Services
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CharacterEntities : DbContext
+    public partial class NewCharacterEntity : DbContext
     {
-        public CharacterEntities()
-            : base("name=CharacterEntities")
+        public NewCharacterEntity()
+            : base("name=NewCharacterEntity")
         {
         }
     
@@ -25,13 +25,13 @@ namespace NameIsNameCharacterGenerator.Services
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Bond> Bonds { get; set; }
         public virtual DbSet<Character> Characters { get; set; }
         public virtual DbSet<Equipment> Equipments { get; set; }
         public virtual DbSet<Features_Traits> Features_Traits { get; set; }
-        public virtual DbSet<Ideal> Ideals { get; set; }
-        public virtual DbSet<Prof_Lang> Prof_Lang { get; set; }
-        public virtual DbSet<Bond> Bonds { get; set; }
         public virtual DbSet<Flaw> Flaws { get; set; }
+        public virtual DbSet<Ideal> Ideals { get; set; }
         public virtual DbSet<PersonalityTrait> PersonalityTraits { get; set; }
+        public virtual DbSet<Prof_Lang> Prof_Lang { get; set; }
     }
 }

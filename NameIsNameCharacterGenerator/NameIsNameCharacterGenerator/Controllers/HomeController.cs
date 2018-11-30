@@ -13,8 +13,6 @@ namespace NameIsNameCharacterGenerator.Controllers
         ICharacterService service = new EFCharacterService();
         public ActionResult Index()
         {
-            CharacterSheet sheet = new CharacterSheet();
-
             return View();
         }
 
@@ -41,11 +39,11 @@ namespace NameIsNameCharacterGenerator.Controllers
             return View(model);
         }
 
-
         public ActionResult CreateNewCharacter()
         {
             CharacterSheet model = new CharacterSheet();
             service.AddNewCharacter(model);
+
             return View("Index");
         }
     }

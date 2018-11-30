@@ -344,13 +344,6 @@ namespace NameIsNameCharacterGenerator.Models
 
         private void SetBFIP(Background b)
         {
-            //string startupPath = System.IO.Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-
-            //You need to change to file paths based on your personal computers
-            //Bond = SetBackgroundTrait(ReadFile($@"{startupPath}\CSVs\Bond.csv", b), 6);
-            //Flaw = SetBackgroundTrait(ReadFile(@"\CSVs\Flaws.csv", b), 6);
-            //Ideal = SetBackgroundTrait(ReadFile(@"\CSVs\Ideals.csv", b), 6);
-            //PersonalityTrait = SetBackgroundTrait(ReadFile(@"\CSVs\PersonalityTrait.csv", b), 8);
 
             Bond = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\Bond.csv"), b), 6);
             Flaw = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\Flaws.csv"), b), 6);

@@ -163,45 +163,45 @@
     <Compile Include="Models\CharacterSheet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Bond.cs">
-      <DependentUpon>CharacterService.tt</DependentUpon>
+      <DependentUpon>NewCharacterService.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\Character.cs">
-      <DependentUpon>CharacterService.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Services\CharacterService.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CharacterService.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Services\CharacterService.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CharacterService.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Services\CharacterService.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CharacterService.edmx</DependentUpon>
+      <DependentUpon>NewCharacterService.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\EFCharacterService.cs" />
     <Compile Include="Services\Equipment.cs">
-      <DependentUpon>CharacterService.tt</DependentUpon>
+      <DependentUpon>NewCharacterService.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\Features_Traits.cs">
-      <DependentUpon>CharacterService.tt</DependentUpon>
+      <DependentUpon>NewCharacterService.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\Flaw.cs">
-      <DependentUpon>CharacterService.tt</DependentUpon>
+      <DependentUpon>NewCharacterService.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\ICharacterService.cs" />
     <Compile Include="Services\Ideal.cs">
-      <DependentUpon>CharacterService.tt</DependentUpon>
+      <DependentUpon>NewCharacterService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\NewCharacterService.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCharacterService.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\NewCharacterService.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCharacterService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\NewCharacterService.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCharacterService.edmx</DependentUpon>
     </Compile>
     <Compile Include="Services\PersonalityTrait.cs">
-      <DependentUpon>CharacterService.tt</DependentUpon>
+      <DependentUpon>NewCharacterService.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\Prof_Lang.cs">
-      <DependentUpon>CharacterService.tt</DependentUpon>
+      <DependentUpon>NewCharacterService.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -243,15 +243,15 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Services\CharacterService.Context.tt">
+    <Content Include="Services\NewCharacterService.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CharacterService.Context.cs</LastGenOutput>
-      <DependentUpon>CharacterService.edmx</DependentUpon>
+      <DependentUpon>NewCharacterService.edmx</DependentUpon>
+      <LastGenOutput>NewCharacterService.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Services\CharacterService.tt">
+    <Content Include="Services\NewCharacterService.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CharacterService.edmx</DependentUpon>
-      <LastGenOutput>CharacterService.cs</LastGenOutput>
+      <DependentUpon>NewCharacterService.edmx</DependentUpon>
+      <LastGenOutput>NewCharacterService.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -266,15 +266,15 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\NewCharacter.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <EntityDeploy Include="Services\CharacterService.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CharacterService.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Services\CharacterService.edmx.diagram">
-      <DependentUpon>CharacterService.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\Home\AllCharacters.cshtml" />
     <Content Include="Views\Home\Character.cshtml" />
+    <EntityDeploy Include="Services\NewCharacterService.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NewCharacterService.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Services\NewCharacterService.edmx.diagram">
+      <DependentUpon>NewCharacterService.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

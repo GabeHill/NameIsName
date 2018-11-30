@@ -14,6 +14,7 @@ namespace NameIsNameCharacterGenerator.Services
     
     public partial class PersonalityTrait
     {
+        public int PersTraitId { get; set; }
         public string PersonalityTraits { get; set; }
         public Nullable<int> CharacterID { get; set; }
     

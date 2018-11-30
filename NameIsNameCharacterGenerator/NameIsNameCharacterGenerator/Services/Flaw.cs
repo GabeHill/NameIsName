@@ -14,6 +14,7 @@ namespace NameIsNameCharacterGenerator.Services
     
     public partial class Flaw
     {
+        public int FlawsId { get; set; }
         public int CharacterID { get; set; }
         public string Flaws { get; set; }
     

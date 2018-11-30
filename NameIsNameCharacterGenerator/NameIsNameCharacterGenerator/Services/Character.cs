@@ -17,7 +17,13 @@ namespace NameIsNameCharacterGenerator.Services
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Character()
         {
+            this.Bonds = new HashSet<Bond>();
             this.PersonalityTraits = new HashSet<PersonalityTrait>();
+            this.Ideals = new HashSet<Ideal>();
+            this.Equipments = new HashSet<Equipment>();
+            this.Flaws = new HashSet<Flaw>();
+            this.Features_Traits = new HashSet<Features_Traits>();
+            this.Prof_Lang = new HashSet<Prof_Lang>();
         }
     
         public int CharcterID { get; set; }
@@ -55,13 +61,19 @@ namespace NameIsNameCharacterGenerator.Services
         public Nullable<int> HP { get; set; }
         public string HitDice { get; set; }
     
-        public virtual Ideal Ideal { get; set; }
-        public virtual Equipment Equipment { get; set; }
-        public virtual Features_Traits Features_Traits { get; set; }
-        public virtual Prof_Lang Prof_Lang { get; set; }
-        public virtual Bond Bond { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bond> Bonds { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonalityTrait> PersonalityTraits { get; set; }
-        public virtual Flaw Flaw { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ideal> Ideals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipment> Equipments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Flaw> Flaws { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Features_Traits> Features_Traits { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prof_Lang> Prof_Lang { get; set; }
     }
 }

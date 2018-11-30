@@ -14,6 +14,7 @@ namespace NameIsNameCharacterGenerator.Services
     
     public partial class Prof_Lang
     {
+        public int ProfLangId { get; set; }
         public int CharcterID { get; set; }
         public string Prof_Lang1 { get; set; }
     
