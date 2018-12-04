@@ -14,6 +14,7 @@ namespace NameIsNameCharacterGenerator.Services
     
     public partial class Ideal
     {
+        public int IdealId { get; set; }
         public int CharacterID { get; set; }
         public string Ideals { get; set; }
     

@@ -14,6 +14,7 @@ namespace NameIsNameCharacterGenerator.Services
     
     public partial class Features_Traits
     {
+        public int FeaturesId { get; set; }
         public int CharcterID { get; set; }
         public string Features_Trait { get; set; }
     

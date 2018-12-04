@@ -4,25 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CharacterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Characters.dbo.Bonds' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+      <Schema Namespace="NewCharacterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bonds">
           <Key>
-            <PropertyRef Name="CharcterID" />
+            <PropertyRef Name="BondId" />
           </Key>
+          <Property Name="BondId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CharcterID" Type="int" Nullable="false" />
-          <Property Name="Bond" Type="varchar" MaxLength="45" />
+          <Property Name="Bond" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Characters">
           <Key>
             <PropertyRef Name="CharcterID" />
           </Key>
           <Property Name="CharcterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="45" />
-          <Property Name="Class" Type="varchar" MaxLength="45" />
-          <Property Name="Race" Type="varchar" MaxLength="45" />
-          <Property Name="Alignment" Type="varchar" MaxLength="45" />
+          <Property Name="Name" Type="text" />
+          <Property Name="Class" Type="text" />
+          <Property Name="Race" Type="text" />
+          <Property Name="Alignment" Type="text" />
           <Property Name="Str" Type="int" />
           <Property Name="Dex" Type="int" />
           <Property Name="Con" Type="int" />
@@ -51,65 +50,59 @@ warning 6002: The table/view 'Characters.dbo.Bonds' does not have a primary key 
           <Property Name="AC" Type="int" />
           <Property Name="Speed" Type="int" />
           <Property Name="HP" Type="int" />
-          <Property Name="HitDice" Type="varchar" MaxLength="45" />
+          <Property Name="HitDice" Type="text" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Characters.dbo.Equipment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Equipment">
           <Key>
-            <PropertyRef Name="CharcterID" />
+            <PropertyRef Name="EquipmentId" />
           </Key>
+          <Property Name="EquipmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CharcterID" Type="int" Nullable="false" />
-          <Property Name="Equipment" Type="varchar" MaxLength="45" />
+          <Property Name="Equipment" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Characters.dbo.Features_Traits' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Features_Traits">
           <Key>
-            <PropertyRef Name="CharcterID" />
+            <PropertyRef Name="FeaturesId" />
           </Key>
+          <Property Name="FeaturesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CharcterID" Type="int" Nullable="false" />
-          <Property Name="Features_Trait" Type="varchar" MaxLength="45" />
+          <Property Name="Features_Trait" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Characters.dbo.Flaws' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Flaws">
           <Key>
-            <PropertyRef Name="CharacterID" />
+            <PropertyRef Name="FlawsId" />
           </Key>
+          <Property Name="FlawsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CharacterID" Type="int" Nullable="false" />
-          <Property Name="Flaws" Type="varchar" MaxLength="45" />
+          <Property Name="Flaws" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Characters.dbo.Ideals' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Ideals">
           <Key>
-            <PropertyRef Name="CharacterID" />
+            <PropertyRef Name="IdealId" />
           </Key>
+          <Property Name="IdealId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CharacterID" Type="int" Nullable="false" />
-          <Property Name="Ideals" Type="varchar" MaxLength="45" />
+          <Property Name="Ideals" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Characters.dbo.PersonalityTraits' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PersonalityTraits">
           <Key>
-            <PropertyRef Name="PersonalityTraits" />
+            <PropertyRef Name="PersTraitId" />
           </Key>
-          <Property Name="PersonalityTraits" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="PersTraitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonalityTraits" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CharacterID" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Prof_Lang">
           <Key>
-            <PropertyRef Name="CharcterID" />
+            <PropertyRef Name="ProfLangId" />
           </Key>
+          <Property Name="ProfLangId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CharcterID" Type="int" Nullable="false" />
-          <Property Name="Prof_Lang" Type="varchar" MaxLength="45" />
+          <Property Name="Prof_Lang" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="BondCharcterID">
           <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
-          <End Role="Bonds" Type="Self.Bonds" Multiplicity="0..1" />
+          <End Role="Bonds" Type="Self.Bonds" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characters">
               <PropertyRef Name="CharcterID" />
@@ -133,7 +126,7 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
         </Association>
         <Association Name="CharcterID">
           <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
-          <End Role="Ideals" Type="Self.Ideals" Multiplicity="0..1" />
+          <End Role="Ideals" Type="Self.Ideals" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characters">
               <PropertyRef Name="CharcterID" />
@@ -145,7 +138,7 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
         </Association>
         <Association Name="EquipCharcterID">
           <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characters">
               <PropertyRef Name="CharcterID" />
@@ -157,7 +150,7 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
         </Association>
         <Association Name="FlawCharcterID">
           <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
-          <End Role="Flaws" Type="Self.Flaws" Multiplicity="0..1" />
+          <End Role="Flaws" Type="Self.Flaws" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characters">
               <PropertyRef Name="CharcterID" />
@@ -169,7 +162,7 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
         </Association>
         <Association Name="FTCharcterID">
           <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
-          <End Role="Features_Traits" Type="Self.Features_Traits" Multiplicity="0..1" />
+          <End Role="Features_Traits" Type="Self.Features_Traits" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characters">
               <PropertyRef Name="CharcterID" />
@@ -181,7 +174,7 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
         </Association>
         <Association Name="PLCharcterID">
           <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
-          <End Role="Prof_Lang" Type="Self.Prof_Lang" Multiplicity="0..1" />
+          <End Role="Prof_Lang" Type="Self.Prof_Lang" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characters">
               <PropertyRef Name="CharcterID" />
@@ -191,50 +184,15 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CharacterModelStoreContainer">
+        <EntityContainer Name="NewCharacterModelStoreContainer">
+          <EntitySet Name="Bonds" EntityType="Self.Bonds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Characters" EntityType="Self.Characters" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Bonds" EntityType="Self.Bonds" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Bonds].[CharcterID] AS [CharcterID], 
-    [Bonds].[Bond] AS [Bond]
-    FROM [dbo].[Bonds] AS [Bonds]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Equipment" EntityType="Self.Equipment" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Equipment].[CharcterID] AS [CharcterID], 
-    [Equipment].[Equipment] AS [Equipment]
-    FROM [dbo].[Equipment] AS [Equipment]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Features_Traits" EntityType="Self.Features_Traits" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Features_Traits].[CharcterID] AS [CharcterID], 
-    [Features_Traits].[Features_Trait] AS [Features_Trait]
-    FROM [dbo].[Features_Traits] AS [Features_Traits]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Flaws" EntityType="Self.Flaws" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Flaws].[CharacterID] AS [CharacterID], 
-    [Flaws].[Flaws] AS [Flaws]
-    FROM [dbo].[Flaws] AS [Flaws]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Ideals" EntityType="Self.Ideals" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Ideals].[CharacterID] AS [CharacterID], 
-    [Ideals].[Ideals] AS [Ideals]
-    FROM [dbo].[Ideals] AS [Ideals]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="PersonalityTraits" EntityType="Self.PersonalityTraits" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [PersonalityTraits].[PersonalityTraits] AS [PersonalityTraits], 
-    [PersonalityTraits].[CharacterID] AS [CharacterID]
-    FROM [dbo].[PersonalityTraits] AS [PersonalityTraits]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Prof_Lang" EntityType="Self.Prof_Lang" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Prof_Lang].[CharcterID] AS [CharcterID], 
-    [Prof_Lang].[Prof_Lang] AS [Prof_Lang]
-    FROM [dbo].[Prof_Lang] AS [Prof_Lang]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Features_Traits" EntityType="Self.Features_Traits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flaws" EntityType="Self.Flaws" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ideals" EntityType="Self.Ideals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalityTraits" EntityType="Self.PersonalityTraits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prof_Lang" EntityType="Self.Prof_Lang" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="BondCharcterID" Association="Self.BondCharcterID">
             <End Role="Characters" EntitySet="Characters" />
             <End Role="Bonds" EntitySet="Bonds" />
@@ -264,19 +222,29 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
             <End Role="Prof_Lang" EntitySet="Prof_Lang" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CharacterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="NewCharacterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bond">
+          <Key>
+            <PropertyRef Name="BondId" />
+          </Key>
+          <Property Name="BondId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CharcterID" Type="Int32" Nullable="false" />
+          <Property Name="Bond1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Character" Relationship="Self.BondCharcterID" FromRole="Bonds" ToRole="Characters" />
+        </EntityType>
         <EntityType Name="Character">
           <Key>
             <PropertyRef Name="CharcterID" />
           </Key>
           <Property Name="CharcterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Class" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Race" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Alignment" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Class" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Race" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Alignment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Str" Type="Int32" />
           <Property Name="Dex" Type="Int32" />
           <Property Name="Con" Type="Int32" />
@@ -305,50 +273,96 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
           <Property Name="AC" Type="Int32" />
           <Property Name="Speed" Type="Int32" />
           <Property Name="HP" Type="Int32" />
-          <Property Name="HitDice" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ideal" Relationship="Self.CharcterID" FromRole="Characters" ToRole="Ideals" />
-          <NavigationProperty Name="Equipment" Relationship="Self.EquipCharcterID" FromRole="Characters" ToRole="Equipment" />
+          <Property Name="HitDice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bonds" Relationship="Self.BondCharcterID" FromRole="Characters" ToRole="Bonds" />
+          <NavigationProperty Name="PersonalityTraits" Relationship="Self.CharacterID" FromRole="Characters" ToRole="PersonalityTraits" />
+          <NavigationProperty Name="Ideals" Relationship="Self.CharcterID" FromRole="Characters" ToRole="Ideals" />
+          <NavigationProperty Name="Equipments" Relationship="Self.EquipCharcterID" FromRole="Characters" ToRole="Equipment" />
+          <NavigationProperty Name="Flaws" Relationship="Self.FlawCharcterID" FromRole="Characters" ToRole="Flaws" />
           <NavigationProperty Name="Features_Traits" Relationship="Self.FTCharcterID" FromRole="Characters" ToRole="Features_Traits" />
           <NavigationProperty Name="Prof_Lang" Relationship="Self.PLCharcterID" FromRole="Characters" ToRole="Prof_Lang" />
-          <NavigationProperty Name="Bond" Relationship="CharacterModel.BondCharcterID" FromRole="Character" ToRole="Bond" />
-          <NavigationProperty Name="PersonalityTraits" Relationship="CharacterModel.CharacterID" FromRole="Character" ToRole="PersonalityTrait" />
-          <NavigationProperty Name="Flaw" Relationship="CharacterModel.FlawCharcterID" FromRole="Character" ToRole="Flaw" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
-            <PropertyRef Name="CharcterID" />
+            <PropertyRef Name="EquipmentId" />
           </Key>
+          <Property Name="EquipmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CharcterID" Type="Int32" Nullable="false" />
-          <Property Name="Equipment1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Equipment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Character" Relationship="Self.EquipCharcterID" FromRole="Equipment" ToRole="Characters" />
         </EntityType>
         <EntityType Name="Features_Traits">
           <Key>
-            <PropertyRef Name="CharcterID" />
+            <PropertyRef Name="FeaturesId" />
           </Key>
+          <Property Name="FeaturesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CharcterID" Type="Int32" Nullable="false" />
-          <Property Name="Features_Trait" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Features_Trait" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Character" Relationship="Self.FTCharcterID" FromRole="Features_Traits" ToRole="Characters" />
+        </EntityType>
+        <EntityType Name="Flaw">
+          <Key>
+            <PropertyRef Name="FlawsId" />
+          </Key>
+          <Property Name="FlawsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CharacterID" Type="Int32" Nullable="false" />
+          <Property Name="Flaws" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Character" Relationship="Self.FlawCharcterID" FromRole="Flaws" ToRole="Characters" />
         </EntityType>
         <EntityType Name="Ideal">
           <Key>
-            <PropertyRef Name="CharacterID" />
+            <PropertyRef Name="IdealId" />
           </Key>
+          <Property Name="IdealId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CharacterID" Type="Int32" Nullable="false" />
-          <Property Name="Ideals" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Ideals" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Character" Relationship="Self.CharcterID" FromRole="Ideals" ToRole="Characters" />
+        </EntityType>
+        <EntityType Name="PersonalityTrait">
+          <Key>
+            <PropertyRef Name="PersTraitId" />
+          </Key>
+          <Property Name="PersTraitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonalityTraits" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CharacterID" Type="Int32" />
+          <NavigationProperty Name="Character" Relationship="Self.CharacterID" FromRole="PersonalityTraits" ToRole="Characters" />
         </EntityType>
         <EntityType Name="Prof_Lang">
           <Key>
-            <PropertyRef Name="CharcterID" />
+            <PropertyRef Name="ProfLangId" />
           </Key>
+          <Property Name="ProfLangId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CharcterID" Type="Int32" Nullable="false" />
-          <Property Name="Prof_Lang1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Prof_Lang1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Character" Relationship="Self.PLCharcterID" FromRole="Prof_Lang" ToRole="Characters" />
         </EntityType>
+        <Association Name="BondCharcterID">
+          <End Role="Characters" Type="Self.Character" Multiplicity="1" />
+          <End Role="Bonds" Type="Self.Bond" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Bonds">
+              <PropertyRef Name="CharcterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CharacterID">
+          <End Role="Characters" Type="Self.Character" Multiplicity="0..1" />
+          <End Role="PersonalityTraits" Type="Self.PersonalityTrait" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="PersonalityTraits">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="CharcterID">
           <End Role="Characters" Type="Self.Character" Multiplicity="1" />
-          <End Role="Ideals" Type="Self.Ideal" Multiplicity="0..1" />
+          <End Role="Ideals" Type="Self.Ideal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characters">
               <PropertyRef Name="CharcterID" />
@@ -360,7 +374,7 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
         </Association>
         <Association Name="EquipCharcterID">
           <End Role="Characters" Type="Self.Character" Multiplicity="1" />
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characters">
               <PropertyRef Name="CharcterID" />
@@ -370,9 +384,21 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FlawCharcterID">
+          <End Role="Characters" Type="Self.Character" Multiplicity="1" />
+          <End Role="Flaws" Type="Self.Flaw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="CharcterID" />
+            </Principal>
+            <Dependent Role="Flaws">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FTCharcterID">
           <End Role="Characters" Type="Self.Character" Multiplicity="1" />
-          <End Role="Features_Traits" Type="Self.Features_Traits" Multiplicity="0..1" />
+          <End Role="Features_Traits" Type="Self.Features_Traits" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characters">
               <PropertyRef Name="CharcterID" />
@@ -384,7 +410,7 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
         </Association>
         <Association Name="PLCharcterID">
           <End Role="Characters" Type="Self.Character" Multiplicity="1" />
-          <End Role="Prof_Lang" Type="Self.Prof_Lang" Multiplicity="0..1" />
+          <End Role="Prof_Lang" Type="Self.Prof_Lang" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characters">
               <PropertyRef Name="CharcterID" />
@@ -394,12 +420,23 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CharacterEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NewCharacterEntity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bonds" EntityType="Self.Bond" />
           <EntitySet Name="Characters" EntityType="Self.Character" />
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
           <EntitySet Name="Features_Traits" EntityType="Self.Features_Traits" />
+          <EntitySet Name="Flaws" EntityType="Self.Flaw" />
           <EntitySet Name="Ideals" EntityType="Self.Ideal" />
+          <EntitySet Name="PersonalityTraits" EntityType="Self.PersonalityTrait" />
           <EntitySet Name="Prof_Lang" EntityType="Self.Prof_Lang" />
+          <AssociationSet Name="BondCharcterID" Association="Self.BondCharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Bonds" EntitySet="Bonds" />
+          </AssociationSet>
+          <AssociationSet Name="CharacterID" Association="Self.CharacterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="PersonalityTraits" EntitySet="PersonalityTraits" />
+          </AssociationSet>
           <AssociationSet Name="CharcterID" Association="Self.CharcterID">
             <End Role="Characters" EntitySet="Characters" />
             <End Role="Ideals" EntitySet="Ideals" />
@@ -407,6 +444,10 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
           <AssociationSet Name="EquipCharcterID" Association="Self.EquipCharcterID">
             <End Role="Characters" EntitySet="Characters" />
             <End Role="Equipment" EntitySet="Equipments" />
+          </AssociationSet>
+          <AssociationSet Name="FlawCharcterID" Association="Self.FlawCharcterID">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Flaws" EntitySet="Flaws" />
           </AssociationSet>
           <AssociationSet Name="FTCharcterID" Association="Self.FTCharcterID">
             <End Role="Characters" EntitySet="Characters" />
@@ -416,90 +457,24 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
             <End Role="Characters" EntitySet="Characters" />
             <End Role="Prof_Lang" EntitySet="Prof_Lang" />
           </AssociationSet>
-          <EntitySet Name="Bonds" EntityType="CharacterModel.Bond" />
-          <EntitySet Name="Flaws" EntityType="CharacterModel.Flaw" />
-          <EntitySet Name="PersonalityTraits" EntityType="CharacterModel.PersonalityTrait" />
-          <AssociationSet Name="BondCharcterID" Association="CharacterModel.BondCharcterID">
-            <End Role="Character" EntitySet="Characters" />
-            <End Role="Bond" EntitySet="Bonds" />
-          </AssociationSet>
-          <AssociationSet Name="CharacterID" Association="CharacterModel.CharacterID">
-            <End Role="Character" EntitySet="Characters" />
-            <End Role="PersonalityTrait" EntitySet="PersonalityTraits" />
-          </AssociationSet>
-          <AssociationSet Name="FlawCharcterID" Association="CharacterModel.FlawCharcterID">
-            <End Role="Character" EntitySet="Characters" />
-            <End Role="Flaw" EntitySet="Flaws" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Bond">
-          <Key>
-            <PropertyRef Name="CharcterID" />
-          </Key>
-          <Property Name="CharcterID" Type="Int32" Nullable="false" />
-          <Property Name="Bond1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Character" Relationship="CharacterModel.BondCharcterID" FromRole="Bond" ToRole="Character" />
-        </EntityType>
-        <EntityType Name="Flaw">
-          <Key>
-            <PropertyRef Name="CharacterID" />
-          </Key>
-          <Property Name="CharacterID" Type="Int32" Nullable="false" />
-          <Property Name="Flaws" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Character" Relationship="CharacterModel.FlawCharcterID" FromRole="Flaw" ToRole="Character" />
-        </EntityType>
-        <EntityType Name="PersonalityTrait">
-          <Key>
-            <PropertyRef Name="PersonalityTraits" />
-          </Key>
-          <Property Name="PersonalityTraits" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="CharacterID" Type="Int32" />
-          <NavigationProperty Name="Character" Relationship="CharacterModel.CharacterID" FromRole="PersonalityTrait" ToRole="Character" />
-        </EntityType>
-        <Association Name="BondCharcterID">
-          <End Type="CharacterModel.Character" Role="Character" Multiplicity="1" />
-          <End Type="CharacterModel.Bond" Role="Bond" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Character">
-              <PropertyRef Name="CharcterID" />
-            </Principal>
-            <Dependent Role="Bond">
-              <PropertyRef Name="CharcterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CharacterID">
-          <End Type="CharacterModel.Character" Role="Character" Multiplicity="0..1" />
-          <End Type="CharacterModel.PersonalityTrait" Role="PersonalityTrait" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Character">
-              <PropertyRef Name="CharcterID" />
-            </Principal>
-            <Dependent Role="PersonalityTrait">
-              <PropertyRef Name="CharacterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FlawCharcterID">
-          <End Type="CharacterModel.Character" Role="Character" Multiplicity="1" />
-          <End Type="CharacterModel.Flaw" Role="Flaw" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Character">
-              <PropertyRef Name="CharcterID" />
-            </Principal>
-            <Dependent Role="Flaw">
-              <PropertyRef Name="CharacterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CharacterModelStoreContainer" CdmEntityContainer="CharacterEntities">
+        <EntityContainerMapping StorageEntityContainer="NewCharacterModelStoreContainer" CdmEntityContainer="NewCharacterEntity">
+          <EntitySetMapping Name="Bonds">
+            <EntityTypeMapping TypeName="NewCharacterModel.Bond">
+              <MappingFragment StoreEntitySet="Bonds">
+                <ScalarProperty Name="BondId" ColumnName="BondId" />
+                <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
+                <ScalarProperty Name="Bond1" ColumnName="Bond" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Characters">
-            <EntityTypeMapping TypeName="CharacterModel.Character">
+            <EntityTypeMapping TypeName="NewCharacterModel.Character">
               <MappingFragment StoreEntitySet="Characters">
                 <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -539,58 +514,56 @@ warning 6002: The table/view 'Characters.dbo.Prof_Lang' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
-            <EntityTypeMapping TypeName="CharacterModel.Equipment">
+            <EntityTypeMapping TypeName="NewCharacterModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
                 <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
                 <ScalarProperty Name="Equipment1" ColumnName="Equipment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Features_Traits">
-            <EntityTypeMapping TypeName="CharacterModel.Features_Traits">
+            <EntityTypeMapping TypeName="NewCharacterModel.Features_Traits">
               <MappingFragment StoreEntitySet="Features_Traits">
+                <ScalarProperty Name="FeaturesId" ColumnName="FeaturesId" />
                 <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
                 <ScalarProperty Name="Features_Trait" ColumnName="Features_Trait" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Flaws">
+            <EntityTypeMapping TypeName="NewCharacterModel.Flaw">
+              <MappingFragment StoreEntitySet="Flaws">
+                <ScalarProperty Name="FlawsId" ColumnName="FlawsId" />
+                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
+                <ScalarProperty Name="Flaws" ColumnName="Flaws" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Ideals">
-            <EntityTypeMapping TypeName="CharacterModel.Ideal">
+            <EntityTypeMapping TypeName="NewCharacterModel.Ideal">
               <MappingFragment StoreEntitySet="Ideals">
+                <ScalarProperty Name="IdealId" ColumnName="IdealId" />
                 <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
                 <ScalarProperty Name="Ideals" ColumnName="Ideals" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PersonalityTraits">
+            <EntityTypeMapping TypeName="NewCharacterModel.PersonalityTrait">
+              <MappingFragment StoreEntitySet="PersonalityTraits">
+                <ScalarProperty Name="PersTraitId" ColumnName="PersTraitId" />
+                <ScalarProperty Name="PersonalityTraits" ColumnName="PersonalityTraits" />
+                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Prof_Lang">
-            <EntityTypeMapping TypeName="CharacterModel.Prof_Lang">
+            <EntityTypeMapping TypeName="NewCharacterModel.Prof_Lang">
               <MappingFragment StoreEntitySet="Prof_Lang">
+                <ScalarProperty Name="ProfLangId" ColumnName="ProfLangId" />
                 <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
                 <ScalarProperty Name="Prof_Lang1" ColumnName="Prof_Lang" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Bonds">
-            <EntityTypeMapping TypeName="CharacterModel.Bond">
-              <MappingFragment StoreEntitySet="Bonds">
-                <ScalarProperty Name="Bond1" ColumnName="Bond" />
-                <ScalarProperty Name="CharcterID" ColumnName="CharcterID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Flaws">
-            <EntityTypeMapping TypeName="CharacterModel.Flaw">
-              <MappingFragment StoreEntitySet="Flaws">
-                <ScalarProperty Name="Flaws" ColumnName="Flaws" />
-                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PersonalityTraits">
-            <EntityTypeMapping TypeName="CharacterModel.PersonalityTrait">
-              <MappingFragment StoreEntitySet="PersonalityTraits">
-                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
-                <ScalarProperty Name="PersonalityTraits" ColumnName="PersonalityTraits" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -14,6 +14,7 @@ namespace NameIsNameCharacterGenerator.Services
     
     public partial class Bond
     {
+        public int BondId { get; set; }
         public int CharcterID { get; set; }
         public string Bond1 { get; set; }
     

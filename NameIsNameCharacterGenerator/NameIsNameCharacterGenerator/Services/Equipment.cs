@@ -14,6 +14,7 @@ namespace NameIsNameCharacterGenerator.Services
     
     public partial class Equipment
     {
+        public int EquipmentId { get; set; }
         public int CharcterID { get; set; }
         public string Equipment1 { get; set; }
     

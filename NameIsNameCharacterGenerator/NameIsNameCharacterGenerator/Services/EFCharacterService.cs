@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using NameIsNameCharacterGenerator.Models;
@@ -10,10 +11,8 @@ namespace NameIsNameCharacterGenerator.Services
     {
         public void AddNewCharacter(CharacterSheet model)
         {
-            using (var context = new CharacterEntities())
+            using (var context = new NewCharacterEntity())
             {
-                Ideal ideal = new Ideal();
-                ideal.Ideals = model.Ideal;
                 Character c = new Character()
                 {
                     Name = model.name,
@@ -48,27 +47,38 @@ namespace NameIsNameCharacterGenerator.Services
                     AC = model.AC,
                     //Speed = model
                     HP = model.HP,
-                    HitDice = model.HitDice,
-                    Ideal = ideal
-
-
+                    HitDice = model.HitDice
                 };
 
-                c.Ideal.Ideals = model.Ideal;
-                foreach (string lang in model.Prof_Lang)
+                c.Ideals.Add(new Ideal() { Character = c, CharacterID = c.CharcterID, Ideals = model.Ideal });
+                foreach (string profLang in model.Prof_Lang)
                 {
-                    Prof_Lang temp = new Prof_Lang();
-                    temp.Prof_Lang1 = lang;
-                    c.Prof_Lang = temp;
+                    c.Prof_Lang.Add(new Prof_Lang { CharcterID = c.CharcterID, Character = c, Prof_Lang1 = profLang });
                 }
                 context.Characters.Add(c);
+
+                // Create the Character
                 context.SaveChanges();
             }
         }
 
+        public void AddIdealByCharacter(Character c, string ideal)
+        {
+            using (var context = new NewCharacterEntity())
+            {
+                context.Characters.Attach(c);
+                Ideal tempIdeal = new Ideal();
+                tempIdeal.CharacterID = c.CharcterID;
+                tempIdeal.Character = c;
+                tempIdeal.Ideals = ideal;
+                context.Ideals.Add(tempIdeal);
+
+                context.SaveChanges();
+            }
+        }
         public void DeleteCharacterById(int id)
         {
-            using (var context = new CharacterEntities())
+            using (var context = new NewCharacterEntity())
             {
                 //Depending on foreign keys this may require reworking
                 var query = context.Characters.SingleOrDefault(i => i.CharcterID == id);
@@ -81,7 +91,7 @@ namespace NameIsNameCharacterGenerator.Services
         public CharacterList GetAllCharacters()
         {
             CharacterList results = new CharacterList();
-            using (var context = new CharacterEntities())
+            using (var context = new NewCharacterEntity())
             {
                 var query = context.Characters.Select(c => c);
                 List<Character> list = new List<Character>();
@@ -95,7 +105,7 @@ namespace NameIsNameCharacterGenerator.Services
         public Character GetCharacterById(int id)
         {
             Character result;
-            using (var context = new CharacterEntities())
+            using (var context = new NewCharacterEntity())
             {
                 var query = context.Characters.Single(i => i.CharcterID == id);
                 result = query;
