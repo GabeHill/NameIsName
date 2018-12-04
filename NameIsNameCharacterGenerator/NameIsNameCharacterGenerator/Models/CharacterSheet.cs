@@ -66,6 +66,7 @@ namespace NameIsNameCharacterGenerator.Models
 
         public List<string> ClassProficiecies { get; set; }
         public List<string> ClassFeatures { get; set; }
+        public List<string> ClassEquipment { get; set; }
         public List<string> Equipment { get; set; }
         public List<string> Features_Traits { get; set; }
         public List<string> Prof_Lang { get; set; }
@@ -342,6 +343,7 @@ namespace NameIsNameCharacterGenerator.Models
         {
             ClassProficiecies = ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\ClassProficiecies.csv"), c.ToString());
             ClassFeatures = ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\ClassFeatures.csv"), c.ToString());
+            ClassEquipment = ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\ClassEquipment.csv"), c.ToString());
         }
 
         private void SetBFIP(Background b)
