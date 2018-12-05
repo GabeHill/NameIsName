@@ -52,7 +52,23 @@ namespace NameIsNameCharacterGenerator.Controllers
         public ActionResult DeleteCharacter(int id)
         {
             service.DeleteCharacterById(id);
-            return View("AllCharacters");
+            return Redirect("AllCharacters");
+        }
+
+        public ActionResult EditCharacter(int id)
+        {
+            Character model = service.GetCharacterById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditCharacter(Character character)
+        {
+            //service.
+
+            CharacterList model = service.GetAllCharacters();
+
+            return View("AllCharacters", model);
         }
     }
 }

@@ -1,0 +1,60 @@
+﻿@model NameIsNameCharacterGenerator.Services.Character
+
+@{
+    ViewBag.Title = "EditCharacter";
+}
+
+<h2>Edit Character Form </h2>
+
+@using (Html.BeginForm("EditCharacter", "Home", FormMethod.Post))
+{
+    <div class="characterHead">
+        <h5>Name: @Html.TextBox("Name")</h5>
+        <h5>Race: @Html.TextBox("Race")</h5>
+        <h5>Class: @Html.TextBox("Class")</h5>
+        <h5>Allignment: @Html.TextBox("Alignment")</h5>
+        <h5>Background:</h5>
+    </div>
+    <div class="characterBody">
+        <div class="abilityScores">
+            <span class="scoreBox">Strength: @Model.Str</span>
+            <span class="scoreBox">Dexterity: @Model.Dex</span>
+            <span class="scoreBox">Constitution: @Model.Con</span>
+            <span class="scoreBox">Wisdom: @Model.Wis</span>
+            <span class="scoreBox">Intelligence: @Model.Int</span>
+            <span class="scoreBox"> Charisma: @Model.Cha</span>
+        </div>
+        <div class="skills">
+            <h5>Skills</h5>
+            <span>Acrobatics: @Model.Acrobatics</span>
+            <span>Animal Handling: @Model.AniamlHandling</span>
+            <span>Athletics: @Model.Athletics</span>
+            <span>Deception: @Model.Deception</span>
+            <span>History: @Model.History</span>
+            <span>Insight: @Model.Insight</span>
+            <span>Intimidation: @Model.Intimidation</span>
+            <span>Investigation: @Model.Investigation</span>
+            <span>Medicine: @Model.Medicine</span>
+            <span>Nature: @Model.Nature</span>
+            <span>Perception: @Model.Perception</span>
+            <span>Performance: @Model.Performance</span>
+            <span>Religion: @Model.Religion</span>
+            <span>Slight Of Hand: @Model.SlightOfHand</span>
+            <span>Stealth: @Model.Stealth</span>
+            <span>Survival: @Model.Survival</span>
+        </div>
+        @*<div class="features">
+                <h5>Character Features</h5>
+                <span>@Model.Features_Traits</span>
+            </div>*@
+        @*<div class="background">
+                <h5>Character Background</h5>
+                <span>@Model.Ideal</span>
+                <span>@Model.Bond</span>
+                <span>@Model.Flaws</span>
+            </div>*@
+    </div>
+    <div>
+        <input type="submit" value="update" />
+    </div>
+}

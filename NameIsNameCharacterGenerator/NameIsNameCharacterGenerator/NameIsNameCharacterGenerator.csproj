@@ -275,6 +275,7 @@
     <Content Include="Services\NewCharacterService.edmx.diagram">
       <DependentUpon>NewCharacterService.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Home\EditCharacter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
