@@ -191,23 +191,25 @@ namespace NameIsNameCharacterGenerator.Models
             int ChaMod = DetermineMod(Cha);
 
             int count = 0;
-            while (count != IntMod)
+            if (IntMod > 0)
             {
-                bool isKnown = false;
-                string tempLang = languages[rand.Next(0, languages.Count)];
-                foreach (string lang in Prof_Lang)
+                while (count != IntMod)
                 {
-                    if (tempLang == lang)
+                    bool isKnown = false;
+                    string tempLang = languages[rand.Next(0, languages.Count)];
+                    foreach (string lang in Prof_Lang)
                     {
-                        isKnown = true;
+                        if (tempLang == lang)
+                        {
+                            isKnown = true;
+                        }
+                    }
+                    if (!isKnown)
+                    {
+                        Prof_Lang.Add(tempLang);
+                        count++;
                     }
                 }
-                if (!isKnown)
-                {
-                    Prof_Lang.Add(tempLang);
-                    count++;
-                }
-
             }
 
             Acrobatics = DexMod;
@@ -243,6 +245,7 @@ namespace NameIsNameCharacterGenerator.Models
             }
             HitDice = $"1D{HP}";
 
+            SetClassFeatures(characterClass);
             name = firstNames[rand.Next(0, firstNames.Count)];
             Alignment = DecideAlignmnet();
         }
@@ -352,7 +355,7 @@ namespace NameIsNameCharacterGenerator.Models
             Flaw = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\Flaws.csv"), b.ToString()), 6);
             Ideal = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\Ideals.csv"), b.ToString()), 6);
             PersonalityTrait = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\PersonalityTrait.csv"), b.ToString()), 8);
-            BackgroundFeature = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\BackgroundFeatures.csv"), b.ToString()), 1);
+            BackgroundFeature = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\BackgroundFeature.csv"), b.ToString()), 1);
         }
 
         private List<string> ReadFile(string filename, string b)
