@@ -55,8 +55,19 @@ namespace NameIsNameCharacterGenerator.Services
                 {
                     c.Prof_Lang.Add(new Prof_Lang { CharcterID = c.CharcterID, Character = c, Prof_Lang1 = profLang });
                 }
-                context.Characters.Add(c);
 
+                c.Bonds.Add(new Bond() { Character = c, CharcterID = c.CharcterID, Bond1 = model.Bond });
+                c.Flaws.Add(new Flaw() { Character = c, CharacterID = c.CharcterID, Flaws = model.Flaw });
+                foreach (string equipment in model.Equipment)
+                {
+                    c.Equipments.Add(new Equipment() { Character = c, CharcterID = c.CharcterID, Equipment1 = equipment });
+                }
+                foreach (string feature in model.ClassFeatures)
+                {
+                    c.Features_Traits.Add(new Features_Traits() { Character = c, CharcterID = c.CharcterID, Features_Trait = feature });
+                }
+                c.PersonalityTraits.Add(new PersonalityTrait() { Character = c, CharacterID = c.CharcterID, PersonalityTraits = model.PersonalityTrait });
+                context.Characters.Add(c);
                 // Create the Character
                 context.SaveChanges();
             }
