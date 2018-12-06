@@ -47,8 +47,10 @@
         </div>*@
     <div class="background">
         <h5>Character Background</h5>
-        @*<span>@Model.Ideals.SingleOrDefault(p => p.CharacterID == Model.CharcterID)</span>
-        <span>@Model.Bonds.SingleOrDefault(b => b.CharcterID == Model.CharcterID)</span>*@
+        @*@foreach (var ide in Model.Ideals)
+        {
+            <span>@ide.Ideals</span>
+        }*@
         @*<span>@Model.Flaws</span>*@
     </div>
 </div>

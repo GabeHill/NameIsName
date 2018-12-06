@@ -58,7 +58,7 @@ namespace NameIsNameCharacterGenerator.Services
 
                 c.Bonds.Add(new Bond() { Character = c, CharcterID = c.CharcterID, Bond1 = model.Bond });
                 c.Flaws.Add(new Flaw() { Character = c, CharacterID = c.CharcterID, Flaws = model.Flaw });
-                foreach (string equipment in model.Equipment)
+                foreach (string equipment in model.ClassEquipment)
                 {
                     c.Equipments.Add(new Equipment() { Character = c, CharcterID = c.CharcterID, Equipment1 = equipment });
                 }
