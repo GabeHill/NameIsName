@@ -350,7 +350,7 @@ namespace NameIsNameCharacterGenerator.Models
             Flaw = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\Flaws.csv"), b.ToString()), 6);
             Ideal = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\Ideals.csv"), b.ToString()), 6);
             PersonalityTrait = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\PersonalityTrait.csv"), b.ToString()), 8);
-            BackgroundFeature = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\BackgroundFeatures.csv"), b.ToString()), 1);
+            BackgroundFeature = SetBackgroundTrait(ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\BackgroundFeature.csv"), b.ToString()), 1);
         }
 
         private List<string> ReadFile(string filename, string b)
