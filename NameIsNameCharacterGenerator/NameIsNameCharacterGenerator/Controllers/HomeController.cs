@@ -40,13 +40,9 @@ namespace NameIsNameCharacterGenerator.Controllers
             Character model = service.GetCharacterById(id);
             return View(model);
         }
-		public ActionResult Character(CharacterSheet CharSh)
-		{
-			Character model = CharSheetToChar(CharSh);
-			return View(model);
-		}
 
-		public ActionResult CreateNewCharacter()
+
+        public ActionResult CreateNewCharacter()
         {
             CharacterSheet model = new CharacterSheet();
             service.AddNewCharacter(model);
@@ -61,47 +57,20 @@ namespace NameIsNameCharacterGenerator.Controllers
             return RedirectToAction("AllCharacters");
         }
 
+        public ActionResult EditCharacter(int id)
+        {
+            Character model = service.GetCharacterById(id);
+            return View(model);
+        }
 
-		private Character CharSheetToChar(CharacterSheet model)
-		{
-			Character c = new Character()
-			{
-				Name = model.name,
-				Class = model.characterClass.ToString(),
-				Race = model.race.ToString(),
-				Alignment = model.Alignment,
-				Str = model.Str,
-				Dex = model.Dex,
-				Con = model.Con,
-				Int = model.Int,
-				Wis = model.Wis,
-				Cha = model.Cha,
-				//Prof = model.Pro
-				Acrobatics = model.Acrobatics,
-				AniamlHandling = model.AnimalHandling,
-				Arcana = model.Arcana,
-				Athletics = model.Athletics,
-				Deception = model.Deception,
-				History = model.History,
-				Insight = model.Insight,
-				Intimidation = model.Intimidation,
-				Investigation = model.Investigation,
-				Medicine = model.Medicine,
-				Nature = model.Nature,
-				Perception = model.Perception,
-				Performance = model.Performance,
-				Persuasion = model.Persuasion,
-				Religion = model.Religion,
-				SlightOfHand = model.SlightOfHand,
-				Stealth = model.Stealth,
-				Survival = model.Survival,
-				AC = model.AC,
-				//Speed = model
-				HP = model.HP,
-				HitDice = model.HitDice
-			};
-			return c;
-		}
+        [HttpPost]
+        public ActionResult EditCharacter(Character character)
+        {
+            //service.
 
-	}
+            CharacterList model = service.GetAllCharacters();
+
+            return View("AllCharacters", model);
+        }
+    }
 }
