@@ -2,58 +2,70 @@
 @using NameIsNameCharacterGenerator.Models
 @model CharacterList
 @{
-    int i = 1;
+    int i = 0;
 
     ViewBag.Title = "All Characters";
 }
 
+<h2>All Characters</h2>
 
-<h2>AllCharacters</h2>
+<div style="padding-bottom:15px" class="card-deck">
 
-@*@foreach (var character in Model.Characters)
-{
-
-<div class="card-deck">
-    <div class="card" style="width:400px">*@
-        @*<img class="card-img-top" src="@character.Image" alt="@character.Name">*@
-        @*<div class="card-body d-flex flex-column">
-            <h4 class="card-title">
-                @character.Name
-                <span style="float:right">@character.Class</span>
-            </h4>
-            <p class="card-text">*@@*@character.Description*@@*</p>
-            <br />
-            @Html.ActionLink("More Info", "Character", new { charID = character.CharcterID }, new {*@ @*@class = "btn btn-primary btn-block mt-auto"*@@*})
-        </div>
-    </div>
-    @if (i == 4)
+    @foreach (Character c in Model.Characters)
     {
-    i = 0;
-        @:</div>
-        @:<br />
-        @:<div class="card-deck">
-        }
-    </div>
-    }*@
+        i++;
 
-@foreach(Character c in Model.Characters)
-{
-    <div class="characterHead">
-        <h4><a href="~/Home/Character/@c.CharcterID">Name: @c.Name</a></h4>
-        <h5>Race: @c.Race</h5>
-        <h5>Class: @c.Class</h5>
-        <h5>Alignment: @c.Alignment</h5>
-        <h5>Background: </h5>
-    </div>
-    <div class="characterBody">
-        <div class="abilityScores">
-            <span>Strength: @c.Str</span>
-            <span>Dexterity: @c.Dex</span>
-            <span>Constitution: @c.Con</span>
-            <span>Intelligence: @c.Int</span>
-            <span>Wisdom: @c.Wis</span>
-            <span>Charisma: @c.Cha</span>
+
+        <div class="card ">
+            <div class="card-header">
+
+                
+                @*
+                    Provides navigation for the cards
+                *@
+
+                <ul class="nav nav-tabs card-header-tabs pull-right" id="myTab" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" id="home-tab" data-toggle="tab" href="#overview-@c.CharcterID">Overview</a></li>
+                    <li class="nav-item"><a class="nav-link" id="profile-tab" data-toggle="tab" href="#stats-@c.CharcterID">Stats</a> </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                @*
+                    Tabs for the cards    
+                *@
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane  show active" id="overview-@c.CharcterID">
+                        <h4 class="card-title"><a href="~/Home/Character/@c.CharcterID">Name: @c.Name</a></h4>
+                        <h5>Race: @c.Race</h5>
+                        <h5>Class: @c.Class</h5>
+                        <h5>Alignment: @c.Alignment</h5>
+                        <h5>Background: </h5>
+                        <hr />
+                        <a href="~/Home/DeleteCharacter/@c.CharcterID"><input class="btn btn-danger" type="button" value="Delete Character" /></a>
+                    </div>
+
+                    <div class="tab-pane " id="stats-@c.CharcterID" role="tabpanel">
+                        <ul class="abilityScores list-group list-group-flush">
+                            <li class="list-group-item">Strength: @c.Str</li>
+                            <li class="list-group-item">Dexterity: @c.Dex</li>
+                            <li class="list-group-item">Const: @c.Con </li>
+                            <li class="list-group-item">Intelligence: @c.Int</li>
+                            <li class="list-group-item">Wisdom: @c.Wis </li>
+                            <li class="list-group-item">Charisma: @c.Cha</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <a href="~/Home/DeleteCharacter/@c.CharcterID"><input type="button" value="Delete Character"/></a>
-}
+
+
+
+        if (i == 4)
+        {
+            //Makes a new card deck if there's more than 4 cards
+            @:</div>
+            @:<div style="padding-bottom:15px" class="card-deck">
+            i = 0;
+        }
+    }
+</div>

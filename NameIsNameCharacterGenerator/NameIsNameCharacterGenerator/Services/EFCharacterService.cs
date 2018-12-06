@@ -58,10 +58,19 @@ namespace NameIsNameCharacterGenerator.Services
 
                 c.Bonds.Add(new Bond() { Character = c, CharcterID = c.CharcterID, Bond1 = model.Bond });
                 c.Flaws.Add(new Flaw() { Character = c, CharacterID = c.CharcterID, Flaws = model.Flaw });
-                foreach (string equipment in model.Equipment)
+
+                string[] allStuff = model.ClassEquipment[0].Split('|');
+                Random rand = new Random();
+                string thisOnesStuff = allStuff[rand.Next(allStuff.Count())];
+                string[] allOfStuff = thisOnesStuff.Split(',');
+                foreach (string item in allOfStuff)
                 {
-                    c.Equipments.Add(new Equipment() { Character = c, CharcterID = c.CharcterID, Equipment1 = equipment });
+                    if (item != c.Class)
+                    {
+                        c.Equipments.Add(new Equipment() { Character = c, CharcterID = c.CharcterID, Equipment1 = item });
+                    }
                 }
+
                 foreach (string feature in model.ClassFeatures)
                 {
                     c.Features_Traits.Add(new Features_Traits() { Character = c, CharcterID = c.CharcterID, Features_Trait = feature });
