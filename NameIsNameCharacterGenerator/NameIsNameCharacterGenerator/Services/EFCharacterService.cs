@@ -94,6 +94,55 @@ namespace NameIsNameCharacterGenerator.Services
                 //Depending on foreign keys this may require reworking
                 var query = context.Characters.SingleOrDefault(i => i.CharcterID == id);
 
+                var bonds = query.Bonds.ToList();
+                bonds.ForEach(b =>
+                {
+                    query.Bonds.Remove(b);
+                    context.Bonds.Remove(b);
+                });
+
+                var equipment = query.Equipments.ToList();
+                equipment.ForEach(e =>
+                {
+                    query.Equipments.Remove(e);
+                    context.Equipments.Remove(e);
+                });
+
+                var features = query.Features_Traits.ToList();
+                features.ForEach(f =>
+                {
+                    query.Features_Traits.Remove(f);
+                    context.Features_Traits.Remove(f);
+                });
+
+                var flaws = query.Flaws.ToList();
+                flaws.ForEach(f =>
+                {
+                    query.Flaws.Remove(f);
+                    context.Flaws.Remove(f);
+                });
+
+                var ideals = query.Ideals.ToList();
+                ideals.ForEach(i =>
+                {
+                    query.Ideals.Remove(i);
+                    context.Ideals.Remove(i);
+                });
+
+                var personality = query.PersonalityTraits.ToList();
+                personality.ForEach(p =>
+                {
+                    query.PersonalityTraits.Remove(p);
+                    context.PersonalityTraits.Remove(p);
+                });
+
+                var lang = query.Prof_Lang.ToList();
+                lang.ForEach(l =>
+                {
+                    query.Prof_Lang.Remove(l);
+                    context.Prof_Lang.Remove(l);
+                });
+
                 context.Characters.Remove(query);
                 context.SaveChanges();
             }

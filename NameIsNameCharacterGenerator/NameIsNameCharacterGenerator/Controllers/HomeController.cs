@@ -52,7 +52,7 @@ namespace NameIsNameCharacterGenerator.Controllers
         public ActionResult DeleteCharacter(int id)
         {
             service.DeleteCharacterById(id);
-            return Redirect("AllCharacters");
+            return RedirectToAction("AllCharacters");
         }
 
         public ActionResult EditCharacter(int id)
