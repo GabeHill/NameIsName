@@ -66,6 +66,7 @@ namespace NameIsNameCharacterGenerator.Models
 
         public List<string> ClassProficiecies { get; set; }
         public List<string> ClassFeatures { get; set; }
+        public List<string> ClassEquipment { get; set; }
         public List<string> Equipment { get; set; }
         public List<string> Features_Traits { get; set; }
         public List<string> Prof_Lang { get; set; }
@@ -190,23 +191,25 @@ namespace NameIsNameCharacterGenerator.Models
             int ChaMod = DetermineMod(Cha);
 
             int count = 0;
-            while (count != IntMod)
+            if (IntMod > 0)
             {
-                bool isKnown = false;
-                string tempLang = languages[rand.Next(0, languages.Count)];
-                foreach (string lang in Prof_Lang)
+                while (count != IntMod)
                 {
-                    if (tempLang == lang)
+                    bool isKnown = false;
+                    string tempLang = languages[rand.Next(0, languages.Count)];
+                    foreach (string lang in Prof_Lang)
                     {
-                        isKnown = true;
+                        if (tempLang == lang)
+                        {
+                            isKnown = true;
+                        }
+                    }
+                    if (!isKnown)
+                    {
+                        Prof_Lang.Add(tempLang);
+                        count++;
                     }
                 }
-                if (!isKnown)
-                {
-                    Prof_Lang.Add(tempLang);
-                    count++;
-                }
-
             }
 
             Acrobatics = DexMod;
@@ -242,6 +245,7 @@ namespace NameIsNameCharacterGenerator.Models
             }
             HitDice = $"1D{HP}";
 
+            SetClassFeatures(characterClass);
             name = firstNames[rand.Next(0, firstNames.Count)];
             Alignment = DecideAlignmnet();
         }
@@ -342,6 +346,7 @@ namespace NameIsNameCharacterGenerator.Models
         {
             ClassProficiecies = ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\ClassProficiecies.csv"), c.ToString());
             ClassFeatures = ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\ClassFeatures.csv"), c.ToString());
+            ClassEquipment = ReadFile(HttpContext.Current.Server.MapPath(@"\CSVs\ClassEquipment.csv"), c.ToString());
         }
 
         private void SetBFIP(Background b)

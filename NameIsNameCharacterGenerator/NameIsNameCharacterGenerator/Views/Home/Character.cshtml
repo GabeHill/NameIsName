@@ -42,13 +42,15 @@
         <span>Survival: @Model.Survival</span>
     </div>
     @*<div class="features">
-        <h5>Character Features</h5>
-        <span>@Model.Features_Traits</span>
-    </div>*@
+            <h5>Character Features</h5>
+            <span>@Model.Features_Traits</span>
+        </div>*@
     <div class="background">
         <h5>Character Background</h5>
-        @*<span>@Model.Ideal</span>*@
-        @*<span>@Model.Bond</span>*@
+        @*@foreach (var ide in Model.Ideals)
+        {
+            <span>@ide.Ideals</span>
+        }*@
         @*<span>@Model.Flaws</span>*@
     </div>
 </div>
