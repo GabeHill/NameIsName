@@ -50,8 +50,10 @@ namespace NameIsNameCharacterGenerator.Controllers
         {
             CharacterSheet model = new CharacterSheet();
             service.AddNewCharacter(model);
-			return View("Character", model);
-        }
+			//RedirectToAction("AllCharacters");
+			return View("Index");
+			//return View("Character", model);
+		}
 
         public ActionResult DeleteCharacter(int id)
         {
