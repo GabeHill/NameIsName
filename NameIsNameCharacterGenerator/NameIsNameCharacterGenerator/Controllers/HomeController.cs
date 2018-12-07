@@ -46,8 +46,8 @@ namespace NameIsNameCharacterGenerator.Controllers
         {
             CharacterSheet model = new CharacterSheet();
             service.AddNewCharacter(model);
-			//RedirectToAction("AllCharacters");
-			return View("Index");
+			return RedirectToAction("AllCharacters");
+			//return View("Index");
 			//return View("Character", model);
 		}
 
