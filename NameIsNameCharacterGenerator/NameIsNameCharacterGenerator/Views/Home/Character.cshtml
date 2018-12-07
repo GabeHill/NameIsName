@@ -1,4 +1,4 @@
-﻿@model NameIsNameCharacterGenerator.Services.Character
+﻿@model NameIsNameCharacterGenerator.Models.CharacterSheet
 
 @{
     ViewBag.Title = "Character";
@@ -7,25 +7,24 @@
 <h2>Character</h2>
 
 <div class="characterHead">
-    <h5>Name: @Model.Name</h5>
-    <h5>Race: @Model.Race</h5>
-    <h5>Class: @Model.Class</h5>
+    <h5>Name: @Model.name</h5>
+    <h5>Race: @Model.characterRace</h5>
+    <h5>Class: @Model.className</h5>
     <h5>Allignment: @Model.Alignment</h5>
-    <h5>Background:</h5>
 </div>
 <div class="characterBody">
     <div class="abilityScores">
         <span class="scoreBox">Strength: @Model.Str</span>
         <span class="scoreBox">Dexterity: @Model.Dex</span>
         <span class="scoreBox">Constitution: @Model.Con</span>
-        <span class="scoreBox">Wisdom: @Model.Wis</span>
         <span class="scoreBox">Intelligence: @Model.Int</span>
+        <span class="scoreBox">Wisdom: @Model.Wis</span>
         <span class="scoreBox"> Charisma: @Model.Cha</span>
     </div>
     <div class="skills">
         <h5>Skills</h5>
         <span>Acrobatics: @Model.Acrobatics</span>
-        <span>Animal Handling: @Model.AniamlHandling</span>
+        <span>Animal Handling: @Model.AnimalHandling</span>
         <span>Athletics: @Model.Athletics</span>
         <span>Deception: @Model.Deception</span>
         <span>History: @Model.History</span>
@@ -41,17 +40,33 @@
         <span>Stealth: @Model.Stealth</span>
         <span>Survival: @Model.Survival</span>
     </div>
-    @*<div class="features">
-            <h5>Character Features</h5>
-            <span>@Model.Features_Traits</span>
-        </div>*@
+    <div class="features">
+        <h5>Character Features</h5>
+        @foreach(string feature in Model.Features_Traits)
+        {
+            <span>@feature</span>
+        }
+    </div>
+    <div class="langs">
+        <h5>Character Languges</h5>
+        @foreach (string lang in Model.Prof_Lang)
+        {
+            <span>@lang</span>
+        }
+    </div>
+    <div class="equipment">
+        <h5>Character Equipment</h5>
+        @foreach(string equipment in Model.Equipment)
+        {
+            <span>@equipment</span>
+        }
+    </div>
     <div class="background">
         <h5>Character Background</h5>
-        @*@foreach (var ide in Model.Ideals)
-        {
-            <span>@ide.Ideals</span>
-        }*@
-        @*<span>@Model.Flaws</span>*@
+        <span>Bond: @Model.Bond</span>
+        <span>Flaw: @Model.Flaw</span>
+        <span>Ideal: @Model.Ideal</span>
+        <span>Personality Trait: @Model.PersonalityTrait</span>
     </div>
 </div>
 <div class="characterFoot">

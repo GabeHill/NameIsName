@@ -40,7 +40,7 @@ namespace NameIsNameCharacterGenerator.Controllers
 
 		public ActionResult Character(int id)
 		{
-			Character model = service.GetCharacterById(id);
+            CharacterSheet model = service.GetCharacterById(id);
 			return View(model);
 		}
 
@@ -57,12 +57,6 @@ namespace NameIsNameCharacterGenerator.Controllers
 		{
 			service.DeleteCharacterById(id);
 			return RedirectToAction("AllCharacters");
-		}
-
-		public ActionResult EditCharacter(int id)
-		{
-			Character model = service.GetCharacterById(id);
-			return View(model);
 		}
 
 		[HttpPost]

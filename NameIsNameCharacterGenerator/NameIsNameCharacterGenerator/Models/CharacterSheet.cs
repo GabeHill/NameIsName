@@ -23,7 +23,6 @@ namespace NameIsNameCharacterGenerator.Models
 
 
 
-
     public class CharacterSheet
     {
 
@@ -33,11 +32,9 @@ namespace NameIsNameCharacterGenerator.Models
 
         public List<string> languages = new List<string> { "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Deep Speech", "Draconic", "Infernal", "Primordial", "Sylvan", "Undercommon" };
 
-        private Race dragonborn;
-        private CharacterClass barbarian;
-        private Background acolyte;
-
         public string name { get; set; }
+        public string characterRace { get; set; }
+        public string className { get; set; }
 
         public Race race { get; set; }
 
@@ -113,6 +110,9 @@ namespace NameIsNameCharacterGenerator.Models
             race = r;
             characterClass = c;
             background = b;
+
+            characterRace = r.ToString();
+            className = characterClass.ToString();
 
             Str = SetAbilityScore();
             Dex = SetAbilityScore();
@@ -398,8 +398,7 @@ namespace NameIsNameCharacterGenerator.Models
 
         private int RollD6()
         {
-            Random r = new Random();
-            return r.Next(1, 7);
+            return rand.Next(1, 7);
         }
     }
 }

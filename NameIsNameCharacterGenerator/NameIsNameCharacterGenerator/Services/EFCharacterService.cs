@@ -109,17 +109,86 @@ namespace NameIsNameCharacterGenerator.Services
             return results;
         }
 
-        public Character GetCharacterById(int id)
+        public CharacterSheet GetCharacterById(int id)
         {
-            Character result;
+            CharacterSheet result;
             using (var context = new NewCharacterEntity())
             {
                 var query = context.Characters.Single(i => i.CharcterID == id);
-                result = query;
+                result = CharacterSheetConverter(query);
             }
             return result;
         }
 
+        public CharacterSheet CharacterSheetConverter(Character c)
+        {
+            CharacterSheet model = new CharacterSheet()
+            {
+                name = c.Name,
+                className = c.Class,
+                characterRace = c.Race,
+                Alignment = c.Alignment,
+                Str = (int)c.Str,
+                Dex = (int)c.Dex,
+                Con = (int)c.Con,
+                Int = (int)c.Int,
+                Wis = (int)c.Wis,
+                Cha = (int)c.Cha,
+                Acrobatics = (int)c.Acrobatics,
+                AnimalHandling = (int)c.AniamlHandling,
+                Arcana = (int)c.Arcana,
+                Athletics = (int)c.Athletics,
+                Deception = (int)c.Deception,
+                History = (int)c.History,
+                Insight = (int)c.Insight,
+                Intimidation = (int)c.Intimidation,
+                Investigation = (int)c.Investigation,
+                Medicine = (int)c.Medicine,
+                Nature = (int)c.Nature,
+                Perception = (int)c.Perception,
+                Performance = (int)c.Performance,
+                Persuasion = (int)c.Persuasion,
+                Religion = (int)c.Religion,
+                SlightOfHand = (int)c.SlightOfHand,
+                Stealth = (int)c.Stealth,
+                Survival = (int)c.Survival,
+                AC = (int)c.AC,
+                HP = (int)c.HP,
+                HitDice = c.HitDice
+            };
+
+            var ideals = c.Ideals.ToList();
+            model.Ideal = ideals[0].Ideals;
+
+            var bonds = c.Bonds.ToList();
+            model.Bond = bonds[0].Bond1;
+
+            var flaws = c.Flaws.ToList();
+            model.Flaw = flaws[0].Flaws;
+
+            var personality = c.PersonalityTraits.ToList();
+            model.PersonalityTrait = personality[0].PersonalityTraits;
+
+            var equipment = c.Equipments.ToList();
+            foreach(var equip in equipment)
+            {
+                model.Equipment.Add(equip.Equipment1);
+            }
+
+            var features = c.Features_Traits.ToList();
+            foreach(var feature in features)
+            {
+                model.Features_Traits.Add(feature.Features_Trait);
+            }
+
+            var langs = c.Prof_Lang.ToList();
+            foreach(var lang in langs)
+            {
+                model.Prof_Lang.Add(lang.Prof_Lang1);
+            }
+
+            return model;
+        }
 
 		public Character CharacterConverter(CharacterSheet model)
 		{

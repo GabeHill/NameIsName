@@ -66,3 +66,12 @@ a.navbar-brand {
     border: solid 2px black;
     list-style-type: none;
 }
+
+.features {
+    display: grid;
+    width: 200px;
+    float: left;
+    margin: 5px;
+    padding: 5px;
+    border: solid 2px black;
+}

@@ -13,7 +13,7 @@ namespace NameIsNameCharacterGenerator.Services
         void AddNewCharacter(CharacterSheet model);
         //Get
         CharacterList GetAllCharacters();
-        Character GetCharacterById(int id);
+        CharacterSheet GetCharacterById(int id);
         //Update
 
         //Delete
