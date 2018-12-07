@@ -13,69 +13,7 @@ namespace NameIsNameCharacterGenerator.Services
         {
             using (var context = new NewCharacterEntity())
             {
-                Character c = new Character()
-                {
-                    Name = model.name,
-                    Class = model.characterClass.ToString(),
-                    Race = model.race.ToString(),
-                    Alignment = model.Alignment,
-                    Str = model.Str,
-                    Dex = model.Dex,
-                    Con = model.Con,
-                    Int = model.Int,
-                    Wis = model.Wis,
-                    Cha = model.Cha,
-                    //Prof = model.Pro
-                    Acrobatics = model.Acrobatics,
-                    AniamlHandling = model.AnimalHandling,
-                    Arcana = model.Arcana,
-                    Athletics = model.Athletics,
-                    Deception = model.Deception,
-                    History = model.History,
-                    Insight = model.Insight,
-                    Intimidation = model.Intimidation,
-                    Investigation = model.Investigation,
-                    Medicine = model.Medicine,
-                    Nature = model.Nature,
-                    Perception = model.Perception,
-                    Performance = model.Performance,
-                    Persuasion = model.Persuasion,
-                    Religion = model.Religion,
-                    SlightOfHand = model.SlightOfHand,
-                    Stealth = model.Stealth,
-                    Survival = model.Survival,
-                    AC = model.AC,
-                    //Speed = model
-                    HP = model.HP,
-                    HitDice = model.HitDice
-                };
-
-                c.Ideals.Add(new Ideal() { Character = c, CharacterID = c.CharcterID, Ideals = model.Ideal });
-                foreach (string profLang in model.Prof_Lang)
-                {
-                    c.Prof_Lang.Add(new Prof_Lang { CharcterID = c.CharcterID, Character = c, Prof_Lang1 = profLang });
-                }
-
-                c.Bonds.Add(new Bond() { Character = c, CharcterID = c.CharcterID, Bond1 = model.Bond });
-                c.Flaws.Add(new Flaw() { Character = c, CharacterID = c.CharcterID, Flaws = model.Flaw });
-
-                string[] allStuff = model.ClassEquipment[0].Split('|');
-                Random rand = new Random();
-                string thisOnesStuff = allStuff[rand.Next(allStuff.Count())];
-                string[] allOfStuff = thisOnesStuff.Split(',');
-                foreach (string item in allOfStuff)
-                {
-                    if (item != c.Class)
-                    {
-                        c.Equipments.Add(new Equipment() { Character = c, CharcterID = c.CharcterID, Equipment1 = item });
-                    }
-                }
-
-                foreach (string feature in model.ClassFeatures)
-                {
-                    c.Features_Traits.Add(new Features_Traits() { Character = c, CharcterID = c.CharcterID, Features_Trait = feature });
-                }
-                c.PersonalityTraits.Add(new PersonalityTrait() { Character = c, CharacterID = c.CharcterID, PersonalityTraits = model.PersonalityTrait });
+				Character c = CharacterConverter(model);
                 context.Characters.Add(c);
                 // Create the Character
                 context.SaveChanges();
@@ -182,5 +120,73 @@ namespace NameIsNameCharacterGenerator.Services
             return result;
         }
 
+
+		public Character CharacterConverter(CharacterSheet model)
+		{
+			Character c = new Character()
+			{
+				Name = model.name,
+				Class = model.characterClass.ToString(),
+				Race = model.race.ToString(),
+				Alignment = model.Alignment,
+				Str = model.Str,
+				Dex = model.Dex,
+				Con = model.Con,
+				Int = model.Int,
+				Wis = model.Wis,
+				Cha = model.Cha,
+				//Prof = model.Pro
+				Acrobatics = model.Acrobatics,
+				AniamlHandling = model.AnimalHandling,
+				Arcana = model.Arcana,
+				Athletics = model.Athletics,
+				Deception = model.Deception,
+				History = model.History,
+				Insight = model.Insight,
+				Intimidation = model.Intimidation,
+				Investigation = model.Investigation,
+				Medicine = model.Medicine,
+				Nature = model.Nature,
+				Perception = model.Perception,
+				Performance = model.Performance,
+				Persuasion = model.Persuasion,
+				Religion = model.Religion,
+				SlightOfHand = model.SlightOfHand,
+				Stealth = model.Stealth,
+				Survival = model.Survival,
+				AC = model.AC,
+				//Speed = model
+				HP = model.HP,
+				HitDice = model.HitDice
+			};
+
+			c.Ideals.Add(new Ideal() { Character = c, CharacterID = c.CharcterID, Ideals = model.Ideal });
+			foreach (string profLang in model.Prof_Lang)
+			{
+				c.Prof_Lang.Add(new Prof_Lang { CharcterID = c.CharcterID, Character = c, Prof_Lang1 = profLang });
+			}
+
+			c.Bonds.Add(new Bond() { Character = c, CharcterID = c.CharcterID, Bond1 = model.Bond });
+			c.Flaws.Add(new Flaw() { Character = c, CharacterID = c.CharcterID, Flaws = model.Flaw });
+
+			string[] allStuff = model.ClassEquipment[0].Split('|');
+			Random rand = new Random();
+			string thisOnesStuff = allStuff[rand.Next(allStuff.Count())];
+			string[] allOfStuff = thisOnesStuff.Split(',');
+			foreach (string item in allOfStuff)
+			{
+				if (item != c.Class)
+				{
+					c.Equipments.Add(new Equipment() { Character = c, CharcterID = c.CharcterID, Equipment1 = item });
+				}
+			}
+
+			foreach (string feature in model.ClassFeatures)
+			{
+				c.Features_Traits.Add(new Features_Traits() { Character = c, CharcterID = c.CharcterID, Features_Trait = feature });
+			}
+			c.PersonalityTraits.Add(new PersonalityTrait() { Character = c, CharacterID = c.CharcterID, PersonalityTraits = model.PersonalityTrait });
+			return c;
+		}
     }
 }
