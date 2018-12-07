@@ -127,7 +127,7 @@ namespace NameIsNameCharacterGenerator.Models
                     Str += 2;
                     Wis += 1;
                     List<string> tools = new List<string> { "Brewer's supplies", "Mason's tools", "Smith's tools" };
-                    Prof_Lang.Add(tools[rand.Next(0, 4)]);
+                    Prof_Lang.Add(tools[rand.Next(0, 3)]);
                     Prof_Lang.Add("Dwarvish");
                     break;
                 case Race.Elf:
