@@ -336,9 +336,13 @@ namespace NameIsNameCharacterGenerator.Models
             {
                 return 3;
             }
-            else
+            else if (stat >= 18 && stat<20)
             {
                 return 4;
+            }
+            else 
+            {
+                return 5;
             }
         }
 
