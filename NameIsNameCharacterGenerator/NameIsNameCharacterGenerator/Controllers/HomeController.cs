@@ -55,7 +55,7 @@ namespace NameIsNameCharacterGenerator.Controllers
 			CharacterSheet model = new CharacterSheet();
 			service.AddNewCharacter(model);
 			Character character = EFservice.CharacterConverter(model);
-			Doc pdf = GetPDF(character);
+			Doc pdf = GetPDF(character,true);
 			return File(pdf.GetStream(), "application/pdf");
 		}
 
@@ -80,15 +80,23 @@ namespace NameIsNameCharacterGenerator.Controllers
 			
 			CharacterSheet model = service.GetCharacterById(id);
 			Character character = EFservice.CharacterConverter(model);
-			Doc pdf = GetPDF(character);
+			Doc pdf = GetPDF(character, false);
 			return File(pdf.GetStream(), "application/pdf");
 		}
 
 
-		public Doc GetPDF(Character character)
+		public Doc GetPDF(Character character, bool top)
 		{
 			Doc theDoc = new Doc();
+			if (top)
+			{
+				theDoc.Read(Server.MapPath("../PDFs/blankSheet.pdf"));
+			}
+			else
+			{
 			theDoc.Read(Server.MapPath("../../PDFs/blankSheet.pdf"));
+
+			}
 
 			//Top of sheet
 			(theDoc.Form["CharacterName"]).Value = character.Name;
