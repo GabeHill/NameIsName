@@ -53,7 +53,7 @@ namespace NameIsNameCharacterGenerator.Controllers
 		public FileResult CreateNewCharacter()
 		{
 			CharacterSheet model = new CharacterSheet();
-			//service.AddNewCharacter(model);
+			service.AddNewCharacter(model);
 			Character character = EFservice.CharacterConverter(model);
 			Doc pdf = GetPDF(character);
 			return File(pdf.GetStream(), "application/pdf");
