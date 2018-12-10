@@ -42,7 +42,7 @@
     </div>
     <div class="features">
         <h5>Character Features</h5>
-        @foreach(string feature in Model.Features_Traits)
+        @foreach (string feature in Model.Features_Traits)
         {
             <span>@feature</span>
         }
@@ -56,7 +56,7 @@
     </div>
     <div class="equipment">
         <h5>Character Equipment</h5>
-        @foreach(string equipment in Model.Equipment)
+        @foreach (string equipment in Model.Equipment)
         {
             <span>@equipment</span>
         }
@@ -70,5 +70,5 @@
     </div>
 </div>
 <div class="characterFoot">
-
+    @Html.ActionLink("View as PDF", "ViewPDF", new { id = ViewBag.id }, new {@class = "btn btn-primary"} )
 </div>
